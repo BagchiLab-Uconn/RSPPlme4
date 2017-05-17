@@ -7,7 +7,7 @@
 #' @param correction The edge correction to use - refer to Kest for options.
 #' @return A vector with the denominator of the K functions for each point
 #' pattern.
-#'
+#' @import spatstat
 #' @examples
 #' x <- spatstat::rpoint(20)
 #' y <- spatstat::rpoint(20)

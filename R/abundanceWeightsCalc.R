@@ -22,7 +22,7 @@
 #' correction = "border")
 
 #' @family RSPP weight calculations
-#'
+
 abundanceWeightsCalc <- function(pppx, pppy=NULL,
                                    square=FALSE, Acorr = FALSE,
                                    r=NULL, correction=NULL)

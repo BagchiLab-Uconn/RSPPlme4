@@ -46,5 +46,6 @@ klmer <- function(formula, k, data, weights, na.action="na.omit")
   if(class(lmer_ki) =='try-error')
     lmer_ki <- NULL
 
+  class(lmer_ki) <- 'klmer'
   return(lmer_ki)
 }

@@ -1,5 +1,21 @@
-################################################################################
-## Function repeats klmer at all distances
+#' Fits klmer at specified distances from a hyperframe with kfunctions and covariates.
+#' @import lme4 spatstat stats
+#'
+#' @param formula Model formula following \code{\link[lme4]{lmer}} syntax
+#' @param hyper \code{\link[spatstat]{hyperframe}} with  k functions, weights,
+#'  grouping factors and covariates
+#' @param r Distances at which to fit model
+#' @param correction Edge correction. See \code{\link[spatstat]{Kest}}.
+#' @param minsamp Minimum number of points to include point pattern in model.
+#' Not currently used.
+#' @param na.action How to deal with missing data.
+#' @param printwarnings Print warnings about distances with no variance?
+
+#' @return Model output of class klmerHyper
+#' @export
+#'
+#' @examples
+#'
 klmerHyper <- function(formula, hyper, r, correction,
                        minsamp=NA, na.action="na.omit", printwarnings=FALSE)
 {

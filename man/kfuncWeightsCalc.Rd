@@ -35,7 +35,6 @@ to do the actual calculations.
 x <- spatstat::rpoint(20)
 y <- spatstat::rpoint(20)
 ratioWeightsCalc(x, y, r=seq(0:0.25, 0.05), correction = "border")
-
 }
 \seealso{
 Other RSPP weight calculations: \code{\link{abundanceWeightsCalc}},

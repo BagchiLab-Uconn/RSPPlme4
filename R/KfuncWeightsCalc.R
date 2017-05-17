@@ -11,7 +11,6 @@
 #' x <- spatstat::rpoint(20)
 #' y <- spatstat::rpoint(20)
 #' ratioWeightsCalc(x, y, r=seq(0:0.25, 0.05), correction = "border")
-#'
 #' @family RSPP weight calculations
 #' @details Uses the functions abundanceWeightsCalc and ratioWeightsCalc
 #' to do the actual calculations.
