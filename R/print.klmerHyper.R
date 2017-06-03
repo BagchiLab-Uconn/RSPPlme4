@@ -9,7 +9,7 @@
 #' @examples
 #'
 print.klmerHyper <- function(x, ...){
-  # dists <- as.numeric(names(x))
+  dists <- as.numeric(names(x))
   cat('linear mixed model fitted to k function \n')
   cat("distances modelled:\n", length(dists), 'distances\n',
       'range =', range(dists), '\n')

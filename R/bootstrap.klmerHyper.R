@@ -27,11 +27,10 @@ bootParallel.klmerHyper <- function(mods, lin_comb, nboot,
   on.exit({stopCluster(cl); message('clusters closed on exit')}) ## close connectons on
   # exit of function
   ## export all the functions and objects to the clusters
-  clusterExport(cl, list('mods', 'resids', 'lin_comb'), envir=environment())
+  ##clusterExport(cl, list('mods', 'resids', 'lin_comb'), envir=environment())
+
   ##load package on all remote cores
-  clusterEvalQ(cl, {
-    library(RSPPlme4)
-  })
+  clusterEvalQ(cl, library(RSPPlme4))
 
   pars <- parSapply(cl, 1:nboot, function(i, mods, resids, lin_comb)
   {

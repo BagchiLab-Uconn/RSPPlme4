@@ -14,7 +14,6 @@
 #' @return Model output of class klmerHyper
 #' @export
 #'
-#' @examples
 #'
 klmerHyper <- function(formula, hyper, r, correction,
                        minsamp=NA, na.action="na.omit", printwarnings=TRUE)

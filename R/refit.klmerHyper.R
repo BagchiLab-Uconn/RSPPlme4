@@ -1,4 +1,3 @@
-
 #' Refits an klmer Model to the Bootstrapped K Function Data
 #'
 #' @param mod Original klmer model fitted to observed data.
@@ -15,18 +14,17 @@
 #' @export
 #'
 refit.klmerHyper <- function(mods, newK){
-  mapply(function(mod, K_r)
+  mods <- mapply(function(mod, K_r)
   {
     if(!is.null(mod))
     {
       ## refit model with new response
-      mod_r <- try(lme4::refit(mod, K_r, calc.derivs=FALSE,
-                               check.conv.hess=FALSE),
-                   silent=TRUE)
-
+      mod_r <- try(lme4::refit(mod, K_r), silent=TRUE)
       return(mod_r)
     }
     else
       return(NULL)
   }, mod=mods, K_r = newK, SIMPLIFY=FALSE)
+  class(mods) <- "klmerHyper"
+  return(mods)
 }
