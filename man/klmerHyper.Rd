@@ -30,6 +30,3 @@ Model output of class klmerHyper
 \description{
 Fits klmer at specified distances from a hyperframe with kfunctions and covariates.
 }
-\examples{
-
-}
