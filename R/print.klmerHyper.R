@@ -1,10 +1,19 @@
-## method to print klmerHyper objects
+
+#' Print KlmerHyper Objects
+#'
+#' @param KlmerHyper object
+#' @param ... Additoinal arguments to print. Not implemented yet.
+#'
+#' @export
+#'
+#' @examples
+#'
 print.klmerHyper <- function(x, ...){
-  dists <- as.numeric(names(x))
+  # dists <- as.numeric(names(x))
   cat('linear mixed model fitted to k function \n')
   cat("distances modelled:\n", length(dists), 'distances\n',
       'range =', range(dists), '\n')
   cat('Fixed effects\n')
-  print(rbind(dists, sapply(x, fixef)))
+  print(do.call('cbind', sapply(x, fixef, simplify=FALSE)))
 }
 

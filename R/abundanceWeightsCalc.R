@@ -20,8 +20,9 @@
 #' ## where weights = n_x/A
 #' abundanceWeightsCalc(x, y, r=seq(0, 0.2, 0.05), square=FALSE,
 #' correction = "border")
-
 #' @family RSPP weight calculations
+#'
+#' @export
 
 abundanceWeightsCalc <- function(pppx, pppy=NULL,
                                    square=FALSE, Acorr = FALSE,

@@ -17,8 +17,12 @@
 #' @examples
 #'
 klmerHyper <- function(formula, hyper, r, correction,
-                       minsamp=NA, na.action="na.omit", printwarnings=FALSE)
+                       minsamp=NA, na.action="na.omit", printwarnings=TRUE)
 {
+
+
+  mc <- match.call()
+
   if(min(r) > 0)
     r <- c(0, r) ## Kest requires a 0 distance.
 
@@ -43,18 +47,23 @@ klmerHyper <- function(formula, hyper, r, correction,
       k[[correction]][ri]
     }, ri=ri)
 
-        weights_i <- sapply(hyper$weights, function(w, ri)
+    weights_i <- sapply(hyper$weights, function(w, ri)
     {
       unlist(w)[ri]
     }, ri=ri)
 
-    klmer(formula=formula, k=k_i,
-          data=as.data.frame(hyper, warn=FALSE),
-          weights=weights_i, na.action="na.omit")
+    # mod <- do.call("klmer", args=list(formula=formula, k=k_i,
+    #                            data=as.data.frame(hyper, warn=FALSE),
+    #                            weights=weights_i, na.action=na.action))
+
+    mod <- klmer(formula=formula, k=k_i, data=as.data.frame(hyper, warn=FALSE),
+                               weights=weights_i, na.action=na.action)
+    return(mod)
   }, simplify=FALSE)
 
-    names(kmods) <- r[dist.keep]
+  names(kmods) <- r[dist.keep]
 
   class(kmods) <- 'klmerHyper'
+  attr(kmods, "call") <- mc
   return(kmods)
 }

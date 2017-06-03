@@ -1,13 +1,16 @@
-#' takes a point patterns and calculates the denominator of
-#' the K function.
+
+#' Takes a Point Pattern and Calculates the Denominator of the K Function.
 #'
 #' @param pppx A point pattern.
 #' @param pppy A second point pattern for bivariate analyses.
 #' @param r A vector of distances to evaluate K at.
 #' @param correction The edge correction to use - refer to Kest for options.
+#'
 #' @return A vector with the denominator of the K functions for each point
-#' pattern.
 #' @import spatstat
+#'
+#' @export
+#'
 #' @examples
 #' x <- spatstat::rpoint(20)
 #' y <- spatstat::rpoint(20)
@@ -15,13 +18,17 @@
 #'
 #' @family RSPP weight calculations
 
-ratioWeightsCalc <- function(pppx, pppy=NULL, r=NULL, correction='border'){
+ratioWeightsCalc <- function(pppx, pppy=NULL, r=NULL, correction='border')
+{
   if(is.null(correction))
     stop('you must define a correction for this weights argument')
   if(is.null(pppy))
     Kx <- spatstat::Kest(pppx, r=r, correction=correction, ratio=TRUE)
   else
     Kx <- spatstat::Kcross(spatstat::superimpose(x=pppx, y=pppy, W=Window(pppy)),
-                 r=r, correction=correction, ratio=TRUE)
+                           r=r, correction=correction, ratio=TRUE)
   wts <-  attr(Kx, 'denominator')[[correction]]
-  return(wts)}
+  return(wts)
+}
+
+

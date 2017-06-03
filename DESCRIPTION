@@ -10,6 +10,7 @@ Description: Many analyses that use spatial point patterns seek answers
     for replicated point pattern analysis, using algorithms for mixed 
     effects models from the lme4 package.
 Imports:
+    abind (>= 1.4),
     lme4 (>= 1.1-12),
     Matrix (>= 1.2-8),
     spatstat (>= 1.50),

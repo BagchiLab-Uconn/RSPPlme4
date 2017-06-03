@@ -14,6 +14,8 @@
 #' @family RSPP weight calculations
 #' @details Uses the functions abundanceWeightsCalc and ratioWeightsCalc
 #' to do the actual calculations.
+#'
+#' @export
 
 kfuncWeightsCalc <- function(pppx, pppy=NULL, r=NULL, correction=NULL,
                                type=c('nx', 'nx_A', 'nx2', 'nx2_A',

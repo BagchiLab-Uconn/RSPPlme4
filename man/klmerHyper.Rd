@@ -5,7 +5,7 @@
 \title{Fits klmer at specified distances from a hyperframe with kfunctions and covariates.}
 \usage{
 klmerHyper(formula, hyper, r, correction, minsamp = NA,
-  na.action = "na.omit", printwarnings = FALSE)
+  na.action = "na.omit", printwarnings = TRUE)
 }
 \arguments{
 \item{formula}{Model formula following \code{\link[lme4]{lmer}} syntax}

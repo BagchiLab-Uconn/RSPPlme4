@@ -12,7 +12,9 @@
 #' See \code{\link[stats]{na.action}}
 #'
 #' @return An object of class kfunclmer.
-
+#'
+#' @export
+#'
 #' @examples
 #' pppx <- replicate(50, rpoispp(runif(1, 10, 100)), simplify=FALSE)
 #' r <- seq(0, 0.25, 0.05)
@@ -41,11 +43,9 @@ klmer <- function(formula, k, data, weights, na.action="na.omit")
   ## Fit model using 'try' to avoid problems of non-convergence at some
   ## distances
   lmer_ki <- try(lmer(formula, k_dataframe, weights=weights,
-                      na.action=na.action),
-                 silent=T)
+         na.action=na.action),silent=T)
+
   if(class(lmer_ki) =='try-error')
     lmer_ki <- NULL
-
-  class(lmer_ki) <- 'klmer'
   return(lmer_ki)
 }

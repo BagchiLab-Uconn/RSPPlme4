@@ -2,8 +2,7 @@
 % Please edit documentation in R/ratioWeightsCalc.R
 \name{ratioWeightsCalc}
 \alias{ratioWeightsCalc}
-\title{takes a point patterns and calculates the denominator of
-the K function.}
+\title{Takes a Point Pattern and Calculates the Denominator of the K Function.}
 \usage{
 ratioWeightsCalc(pppx, pppy = NULL, r = NULL, correction = "border")
 }
@@ -18,11 +17,9 @@ ratioWeightsCalc(pppx, pppy = NULL, r = NULL, correction = "border")
 }
 \value{
 A vector with the denominator of the K functions for each point
-pattern.
 }
 \description{
-takes a point patterns and calculates the denominator of
-the K function.
+Takes a Point Pattern and Calculates the Denominator of the K Function.
 }
 \examples{
 x <- spatstat::rpoint(20)
