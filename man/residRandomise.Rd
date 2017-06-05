@@ -8,7 +8,7 @@ residRandomise(resids_e, mods)
 }
 \arguments{
 \item{resids_e}{= Homogenised level 1 residuals from
-\code{\link{residualHomogenise.klmer}}.}
+\code{\link{residHomogenise}}.}
 
 \item{mods}{klmer models.}
 }

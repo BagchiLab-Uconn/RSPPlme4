@@ -1,15 +1,16 @@
 #' Updates klmerHyper Objects by Dropping Specified Term from Model
 #'
-#' @param mods klmerHyper object.
-#'
+#' @param object klmerHyper object.
 #' @param term Term to be tested.
+#' @param ... Additional arguments, currently ignored.
 #'
 #' @return Returns a klmerHyper object with the term of interest dropped.
 #'
 #' @export
 
-update.klmerHyper <- function(mods, term)
+update.klmerHyper <- function(object, term, ...)
 {
+  mods <- object
   mods0 <- lapply(mods, function(mod, term, na.action) {
     mod0 <- NULL
 

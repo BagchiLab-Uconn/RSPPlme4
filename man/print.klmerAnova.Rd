@@ -4,10 +4,14 @@
 \alias{print.klmerAnova}
 \title{Print a klmerAnova Object}
 \usage{
-\method{print}{klmerAnova}(obj, stat = T)
+\method{print}{klmerAnova}(x, stat = T, ...)
 }
 \arguments{
-\item{obj}{An object of class \code{\link{anova.klmerHyper}}}
+\item{x}{An object of class \code{\link{anova.klmerHyper}}}
+
+\item{stat}{Statistic to print. Options are T (default) or D.}
+
+\item{...}{Additional arguments, currently ignored.}
 }
 \value{
 Prints to screen.

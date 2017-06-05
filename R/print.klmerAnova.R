@@ -1,19 +1,21 @@
 
 #' Print a klmerAnova Object
 #'
-#' @param obj An object of class \code{\link{anova.klmerHyper}}
+#' @param x An object of class \code{\link{anova.klmerHyper}}
+#' @param stat Statistic to print. Options are T (default) or D.
+#' @param ... Additional arguments, currently ignored.
 #'
 #' @return Prints to screen.
 #' @export
 
-print.klmerAnova <- function(obj, stat=T){
-  print(paste(obj$term, '( nsim = ', obj$nsim, ')'))
+print.klmerAnova <- function(x, stat=T, ...){
+  print(paste(x$term, '( nsim = ', x$nsim, ')'))
 
-  sapply(obj[[stat]], function(x)
+  sapply(x[[stat]], function(obj)
     {
     cat("\n")
     cat("Distances =", paste(x$dists, collapse=" "), "\n")
-    print(x$stat)
+    print(obj$stat)
   })
 
   cat("")

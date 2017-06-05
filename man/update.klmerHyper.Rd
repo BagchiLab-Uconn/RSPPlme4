@@ -4,12 +4,14 @@
 \alias{update.klmerHyper}
 \title{Updates klmerHyper Objects by Dropping Specified Term from Model}
 \usage{
-\method{update}{klmerHyper}(mods, term)
+\method{update}{klmerHyper}(object, term, ...)
 }
 \arguments{
-\item{mods}{klmerHyper object.}
+\item{object}{klmerHyper object.}
 
 \item{term}{Term to be tested.}
+
+\item{...}{Additional arguments, currently ignored.}
 }
 \value{
 Returns a klmerHyper object with the term of interest dropped.

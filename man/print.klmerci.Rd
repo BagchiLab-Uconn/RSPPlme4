@@ -4,12 +4,14 @@
 \alias{print.klmerci}
 \title{Print klmer confidence interval objects}
 \usage{
-\method{print}{klmerci}(obj, type = "pars")
+\method{print}{klmerci}(x, type = "pars", ...)
 }
 \arguments{
-\item{obj}{A klmerHyper object.}
+\item{x}{A klmerHyper object.}
 
 \item{type}{Print parameters, (pars, the default), or predictions (preds)}
+
+\item{...}{Additoinal arguments to print. Not implemented yet.}
 }
 \value{
 No return value.

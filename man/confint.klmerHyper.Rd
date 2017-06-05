@@ -4,19 +4,21 @@
 \alias{confint.klmerHyper}
 \title{Calculate Bootstrap Confidence Intervals on a klmerHyper object.}
 \usage{
-\method{confint}{klmerHyper}(mods, lin_comb = NULL, bootobj = NULL,
-  confint = 0.95, nboot = NULL, ncore = 1, cltype = "PSOCK",
-  iseed = NULL)
+\method{confint}{klmerHyper}(object, parm = NULL, level = 0.95,
+  lin_comb = NULL, bootobj = NULL, nboot = NULL, ncore = 1,
+  cltype = "PSOCK", iseed = NULL, ...)
 }
 \arguments{
-\item{mods}{A \code{\link{klmerHyper}} object.}
+\item{object}{A \code{\link{klmerHyper}} object.}
+
+\item{parm}{Parameter to get confidence interval for. Currently ignored.}
+
+\item{level}{Desired confidence intervals.}
 
 \item{lin_comb}{Linear combintaion of the fixed parameters}
 
 \item{bootobj}{Bootstrap object run outside function. Defaults to NULL so
 the bootstrap is run internally.}
-
-\item{confint}{Desired confidence intervals.}
 
 \item{nboot}{Number of bootstrap simulations.}
 
@@ -25,13 +27,12 @@ the bootstrap is run internally.}
 \item{cltype}{Type of cluster to use.}
 
 \item{iseed}{Random number seed.}
+
+\item{...}{Additional arguments, currently ignored.}
 }
 \value{
 Returns the confidence intervals on an klmer object.
 }
 \description{
 Calculate Bootstrap Confidence Intervals on a klmerHyper object.
-}
-\examples{
-
 }

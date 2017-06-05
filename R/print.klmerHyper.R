@@ -1,13 +1,12 @@
 
 #' Print KlmerHyper Objects
 #'
-#' @param KlmerHyper object
+#' @param x object to be printed
 #' @param ... Additoinal arguments to print. Not implemented yet.
 #'
 #' @export
 #'
-#' @examples
-#'
+
 print.klmerHyper <- function(x, ...){
   dists <- as.numeric(names(x))
   cat('linear mixed model fitted to k function \n')

@@ -7,20 +7,13 @@
 \method{refit}{klmerHyper}(mods, newK)
 }
 \arguments{
-\item{mod}{Original klmer model fitted to observed data.}
+\item{mods}{Original \code{\link{klmerHyper}} model fitted to observed data.}
 
-\item{res_r}{randomised residuals.}
+\item{newK}{Simulated K functions.}
 }
 \value{
-An klmer model fitted to the randomised data.
+A klmerHyper model fitted to the randomised data.
 }
 \description{
 Refits an klmer Model to the Bootstrapped K Function Data
-}
-\note{
-This is probably the time consuming step. Might be worth setting the
-parameters of mod as starting values and increasing tolerances several fold.
-We are only interested in the paramter estimates here, not their
-uncertainties. Speeding up the code will make it feasible to increase
-bootstraps, which is where better estimates of uncertainty will come from.
 }

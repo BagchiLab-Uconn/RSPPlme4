@@ -4,10 +4,18 @@
 \alias{simulate.klmerHyper}
 \title{Semi-Parametric Bootstrap sample form a klmerHyper object.}
 \usage{
-\method{simulate}{klmerHyper}(mods, resids)
+\method{simulate}{klmerHyper}(object, nsim = 1, seed = NULL, resids, ...)
 }
 \arguments{
-\item{mods}{list of klmer models, usually from \code{\link{klmerHyper}}}
+\item{object}{Models to be simulated from.}
+
+\item{nsim}{Number of simulations (ignored)}
+
+\item{seed}{Seed for simulations (currently ignored)}
+
+\item{resids}{The residuals to be resampled.}
+
+\item{...}{Additional parameters for simulate method.}
 }
 \value{
 A list of simulated Kfunctions for all distances in klmerHyper

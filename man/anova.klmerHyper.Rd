@@ -4,11 +4,11 @@
 \alias{anova.klmerHyper}
 \title{Compare Models with and without a Parameter of Interest.}
 \usage{
-\method{anova}{klmerHyper}(mods, term, dists, nboot, maxit = 10, ncore = 1,
-  cltype = "PSOCK", iseed = NULL)
+\method{anova}{klmerHyper}(object, term, dists, nboot, maxit = 10,
+  ncore = 1, cltype = "PSOCK", iseed = NULL, ...)
 }
 \arguments{
-\item{mods}{An object of class \code{\link{klmerHyper}}}
+\item{object}{An object of class \code{\link{klmerHyper}}}
 
 \item{term}{The parameter of interest.}
 
@@ -22,9 +22,11 @@ a model at a given distance.}
 
 \item{ncore}{Number of cpus to use.}
 
-\item{cltype}{The cluster type, see \code{\link{parallel::makeCluster}}}
+\item{cltype}{The cluster type, see \code{\link[parallel]{makeCluster}}}
 
 \item{iseed}{The random number seed to use for repeatability.}
+
+\item{...}{Additional arguments, currently not implemented.}
 }
 \value{
 A list of class klmerAnova.

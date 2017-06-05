@@ -1,15 +1,9 @@
 #' Refits an klmer Model to the Bootstrapped K Function Data
 #'
-#' @param mod Original klmer model fitted to observed data.
-#' @param res_r randomised residuals.
+#' @param mods Original \code{\link{klmerHyper}} model fitted to observed data.
+#' @param newK Simulated K functions.
 #'
-#' @return An klmer model fitted to the randomised data.
-#'
-#' @note This is probably the time consuming step. Might be worth setting the
-#' parameters of mod as starting values and increasing tolerances several fold.
-#' We are only interested in the paramter estimates here, not their
-#' uncertainties. Speeding up the code will make it feasible to increase
-#' bootstraps, which is where better estimates of uncertainty will come from.
+#' @return A klmerHyper model fitted to the randomised data.
 #'
 #' @export
 #'
@@ -19,7 +13,11 @@ refit.klmerHyper <- function(mods, newK){
     if(!is.null(mod))
     {
       ## refit model with new response
-      mod_r <- try(lme4::refit(mod, K_r), silent=TRUE)
+      mod_r <- try(lme4::refit(mod, K_r,
+                               control=lme4::lmerControl(calc.derivs=FALSE,
+                                                         check.conv.hess="ignore",
+                                                         check.conv.grad = "ignore")),
+                   silent=TRUE)
       return(mod_r)
     }
     else

@@ -1,24 +1,26 @@
 
 #' Calculate Bootstrap Confidence Intervals on a klmerHyper object.
 #'
-#' @param mods A \code{\link{klmerHyper}} object.
+#' @param object A \code{\link{klmerHyper}} object.
+#' @param parm Parameter to get confidence interval for. Currently ignored.
+#' @param level Desired confidence intervals.
 #' @param lin_comb Linear combintaion of the fixed parameters
-#' @param confint Desired confidence intervals.
 #' @param bootobj Bootstrap object run outside function. Defaults to NULL so
 #' the bootstrap is run internally.
 #' @param nboot Number of bootstrap simulations.
 #' @param ncore Number of cpus to use.
 #' @param cltype Type of cluster to use.
 #' @param iseed Random number seed.
+#' @param ... Additional arguments, currently ignored.
 #'
 #' @return Returns the confidence intervals on an klmer object.
 #' @export
 #'
-#' @examples
-#'
-confint.klmerHyper <- function(mods, lin_comb=NULL, bootobj=NULL, confint = 0.95,
-                               nboot=NULL, ncore=1, cltype="PSOCK", iseed=NULL)
+confint.klmerHyper <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootobj=NULL,
+                               nboot=NULL, ncore=1, cltype="PSOCK", iseed=NULL, ...)
   {
+
+  mods <- object
 
   ## If bootstraps haven't been run yet, run now.
   if(is.null(bootobj))
@@ -28,14 +30,14 @@ confint.klmerHyper <- function(mods, lin_comb=NULL, bootobj=NULL, confint = 0.95
                  "\nConsider defining parameters for parallel processing:
                  ncore and cltype.\n"))
 
-    bootobj <- bootParallel.klmerHyper(mods,lin_comb=lin_comb, nboot=nboot,
+    bootobj <- bootstrap.klmerHyper(mods,lin_comb=lin_comb, nboot=nboot,
                                          ncore=ncore, cltype=cltype, iseed=iseed)
 
   }
 
   lin_comb <- attr(bootobj,  "linear.combination")
 
-  alpha <-  1 - confint ## simplify calculations by taking 1 - alpha.
+  alpha <-  1 - level ## simplify calculations by taking 1 - alpha.
 
   ## Extract parameters from the models.
   mod_pars <- sapply(mods, getPars, lin_comb =lin_comb,
@@ -86,6 +88,7 @@ confint.klmerHyper <- function(mods, lin_comb=NULL, bootobj=NULL, confint = 0.95
                         lcl_pred=lcl_pred, along=3)
   ## organise into return object
   ci_boot <- list(predictions = preds, pars_fixed=pars_fixed)
+  attr(ci_boot, "level") <- level
   attr(ci_boot, "bootobj") <- bootobj
   class(ci_boot) <- "klmerci"
   return(ci_boot)

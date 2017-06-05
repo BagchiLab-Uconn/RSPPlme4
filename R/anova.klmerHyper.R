@@ -1,6 +1,6 @@
 #' Compare Models with and without a Parameter of Interest.
 #'
-#' @param mods An object of class \code{\link{klmerHyper}}
+#' @param object An object of class \code{\link{klmerHyper}}
 #' @param term The parameter of interest.
 #' @param dists Distances at which to test the effect of term. Can be a list with
 #' several distance ranges specified.
@@ -8,18 +8,19 @@
 #' @param ncore Number of cpus to use.
 #' @param maxit Maximum number of samples to try before giving up on refitting
 #' a model at a given distance.
-#' @param cltype The cluster type, see \code{\link{parallel::makeCluster}}
+#' @param cltype The cluster type, see \code{\link[parallel]{makeCluster}}
 #' @param iseed The random number seed to use for repeatability.
+#' @param ... Additional arguments, currently not implemented.
 #'
 #' @return A list of class klmerAnova.
 #'
 #' @export
 #'
 
-anova.klmerHyper <- function (mods, term, dists, nboot,  maxit=10,
-                     ncore=1, cltype='PSOCK', iseed=NULL)
+anova.klmerHyper <- function (object, term, dists, nboot,  maxit=10,
+                     ncore=1, cltype='PSOCK', iseed=NULL, ...)
 {
-  ## manage distances if several ranges are to be tested
+    ## manage distances if several ranges are to be tested
   testdists <-  dists
   if(class(testdists) !='list')
     testdists <- list(testdists)
@@ -29,14 +30,14 @@ anova.klmerHyper <- function (mods, term, dists, nboot,  maxit=10,
     dists <- dists[order(dists)]
   }
 
-  if(!all(as.character(dists) %in% names(mods)))
+  if(!all(as.character(dists) %in% names(object)))
     stop("Some test distances have not been modelled")
 
-  atts <- attributes(mods)
-  mods <- mods[as.character(dists)]
-  attributes(mods) <- atts
+  atts <- attributes(object)
+  object <- object[as.character(dists)]
+  attributes(object) <- atts
 
-  modsH1 <- refitMLklmerHyper(mods)
+  modsH1 <- refitMLklmerHyper(object)
   modsH0 <- update(modsH1, term=term)
 
   ## remove models that didn't converge
@@ -64,7 +65,7 @@ anova.klmerHyper <- function (mods, term, dists, nboot,  maxit=10,
   clusterEvalQ(cl, library(RSPPlme4))
 
   ## Extract residuals and BLUPs and make them exchangable.
-  resids <- residHomogenise(mods)
+  resids <- residHomogenise(object)
 
 
   ## Estimate the null distribution - first refit models to random data

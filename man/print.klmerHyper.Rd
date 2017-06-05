@@ -7,13 +7,10 @@
 \method{print}{klmerHyper}(x, ...)
 }
 \arguments{
-\item{...}{Additoinal arguments to print. Not implemented yet.}
+\item{x}{object to be printed}
 
-\item{KlmerHyper}{object}
+\item{...}{Additoinal arguments to print. Not implemented yet.}
 }
 \description{
 Print KlmerHyper Objects
-}
-\examples{
-
 }

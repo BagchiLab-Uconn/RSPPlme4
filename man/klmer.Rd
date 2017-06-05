@@ -26,6 +26,8 @@ An object of class kfunclmer.
 function to fit mixed effects model to k functions at a set distance
 }
 \examples{
+
+library(spatstat)
 pppx <- replicate(50, rpoispp(runif(1, 10, 100)), simplify=FALSE)
 r <- seq(0, 0.25, 0.05)
 k <- lapply(pppx, Kest, r=r, correction='border')
@@ -33,7 +35,7 @@ k <- sapply(k, function(x) x[['border']][2])
 weights <- lapply(pppx, kfuncWeightsCalc, r=r,
 correction="border", type="nx_A")
 weights <- sapply(weights, function(x) x[[2]])
-dat <- data.frame(x=runif(50, 0, 10), gr = sample(1:10, 50, replace=T))
+dat <- data.frame(x=runif(50, 0, 10), gr = sample(1:10, 50, replace=TRUE))
 formula = ~ x + (1|gr)
 klmer(~x + (1|gr), k=k, data=dat, weights=weights)
 }
