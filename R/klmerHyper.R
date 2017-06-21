@@ -32,7 +32,7 @@ klmerHyper <- function(formula, hyper, r, correction,
   dist.keep <-  (apply(sapply(hyper$k, function(K) K[[correction]][K$r %in% r]), 1,
                        function(x) var(x)) > 0)
   if(printwarnings)
-    if(any(!dist.keep[r!=-0]))
+    if(any(!dist.keep[r!=0]))
       warning(paste('Not modelling K at distances ',
                     paste(r[!dist.keep], collapse=', '),
                     "due to zero variance"))
