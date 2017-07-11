@@ -14,7 +14,7 @@ print.klmerAnova <- function(x, stat=T, ...){
   sapply(x[[stat]], function(obj)
     {
     cat("\n")
-    cat("Distances =", paste(x$dists, collapse=" "), "\n")
+    cat("Distances =", paste(obj$dists, collapse=" "), "\n")
     print(obj$stat)
   })
 

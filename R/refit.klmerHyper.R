@@ -14,9 +14,9 @@ refit.klmerHyper <- function(mods, newK){
     {
       ## refit model with new response
       mod_r <- try(lme4::refit(mod, K_r,
-                               control=lme4::lmerControl(calc.derivs=FALSE,
-                                                         check.conv.hess="ignore",
-                                                         check.conv.grad = "ignore")),
+                               control=lme4::lmerControl(calc.derivs=FALSE)), #,
+                                                         ##check.conv.hess="ignore",
+                                                         ##check.conv.grad = "ignore")),
                    silent=TRUE)
       return(mod_r)
     }

@@ -10,7 +10,7 @@
 #' the lme4 syntax. See \code{\link[lme4]{lmer}}
 #' @param na.action How to deal with missing values.
 #' See \code{\link[stats]{na.action}}
-#'
+#' @param ... Other arguments to \code{\link[lme4]{lmer}}
 #' @return An object of class kfunclmer.
 #'
 #' @export
@@ -29,7 +29,7 @@
 #' formula = ~ x + (1|gr)
 #' klmer(~x + (1|gr), k=k, data=dat, weights=weights)
 
-klmer <- function(formula, k, data, weights, na.action="na.omit")
+klmer <- function(formula, k, data, weights, na.action="na.omit", ...)
 {
 
   ## also need to make sure these weights have a mean of 1
@@ -45,7 +45,7 @@ klmer <- function(formula, k, data, weights, na.action="na.omit")
   ## Fit model using 'try' to avoid problems of non-convergence at some
   ## distances
   lmer_ki <- try(lmer(formula, k_dataframe, weights=weights,
-         na.action=na.action),silent=T)
+         na.action=na.action, ...),silent=T)
 
   if(class(lmer_ki) =='try-error')
     lmer_ki <- NULL

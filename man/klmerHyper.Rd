@@ -4,14 +4,17 @@
 \alias{klmerHyper}
 \title{Fits klmer at specified distances from a hyperframe with kfunctions and covariates.}
 \usage{
-klmerHyper(formula, hyper, r, correction, minsamp = NA,
-  na.action = "na.omit", printwarnings = TRUE)
+klmerHyper(formula, hyper, weights, r, correction, minsamp = NA,
+  na.action = "na.omit", printwarnings = TRUE, ...)
 }
 \arguments{
-\item{formula}{Model formula following \code{\link[lme4]{lmer}} syntax}
+\item{formula}{Model formula following \code{\link[lme4]{lmer}} syntax, with
+left hand side a k-function object.}
 
 \item{hyper}{\code{\link[spatstat]{hyperframe}} with  k functions, weights,
 grouping factors and covariates}
+
+\item{weights}{List of weights for each point pattern.}
 
 \item{r}{Distances at which to fit model}
 
@@ -23,6 +26,8 @@ Not currently used.}
 \item{na.action}{How to deal with missing data.}
 
 \item{printwarnings}{Print warnings about distances with no variance?}
+
+\item{...}{Additional arguments to \code{\link[lme4]{lmer}}}
 }
 \value{
 Model output of class klmerHyper
