@@ -24,14 +24,16 @@ modCompareBoot <- function(modsH1, modsH0, resids, maxit)
     bootstrap_stat <- modCompare(modsH1=modsH1_r, modsH0=modsH0_r)
 
     ## If any errors or deviance changes < 0 repeat iteration
-    do.again <- (do.again - 1) *
-      (
-        any(sapply(modsH0_r, inherits, "try-error")) |
-          any(sapply(modsH1_r, inherits, "try-error")) |
-          any(sapply(bootstrap_stat, function(x) x<0))
-      )
+    do.again <- (do.again - 1) * (
+      any(sapply(modsH0_r, inherits, "try-error")) |
+      any(sapply(modsH0_r, inherits, "try-error")) |
+        bootstrap_stat < 0
+    )
 
-    bootstrap_stat[sapply(bootstrap_stat, is.null)] <- NA
-    return(bootstrap_stat)
+    if(do.again > 0)
+      warning("convergence error, repeating iteration")
   }
+  bootstrap_stat[sapply(bootstrap_stat, is.null)] <- NA
+  return(bootstrap_stat)
+
 }

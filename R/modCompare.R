@@ -14,7 +14,10 @@ modCompare <- function(modsH1, modsH0)
     if (is.null(mod) | is.null(mod0))
       return(NULL)
     else
-      return(deviance(mod0) - deviance(mod))
+      {
+        devmod <- deviance(mod0) - deviance(mod)
+        return(devmod)
+      }
   }, mod = modsH1, mod0 = modsH0, SIMPLIFY=TRUE)
   return(d_diff)
 }

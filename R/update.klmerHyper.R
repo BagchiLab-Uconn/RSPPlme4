@@ -21,9 +21,9 @@ update.klmerHyper <- function(object, term, ...)
             object = mod,
             formula = update(formula(mod), paste("~.-", term)),
             data = model.frame(mod), weights = weights(mod),
-            REML = FALSE, na.action=na.action)),
+             na.action=na.action)),
           error= function(c)
-            warning(paste("Null model fit failedat some distances", c$message))
+            warning(paste("Null model fit failed at some distances", c$message))
       )
     }
 

@@ -17,7 +17,7 @@
 #' @export
 #'
 
-anova.klmerHyper <- function (object, term, dists, nboot,  maxit=10,
+anova.klmerHyper <- function (object, term, dists, nboot,  maxit=50,
                      ncore=1, cltype='PSOCK', iseed=NULL, ...)
 {
     ## manage distances if several ranges are to be tested
