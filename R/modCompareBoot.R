@@ -21,13 +21,13 @@ modCompareBoot <- function(modsH1, modsH0, resids, maxit)
     modsH1_r <- refit.klmerHyper(modsH1, newK=K_r)
 
 
-    bootstrap_stat <- modCompare(modsH1=modsH1_r, modsH0=modsH0_r)
+    (bootstrap_stat <- modCompare(modsH1=modsH1_r, modsH0=modsH0_r))
 
     ## If any errors or deviance changes < 0 repeat iteration
     do.again <- (do.again - 1) * (
       any(sapply(modsH0_r, inherits, "try-error")) |
       any(sapply(modsH0_r, inherits, "try-error")) |
-        bootstrap_stat < 0
+        any(bootstrap_stat < 0)
     )
 
     if(do.again > 0)
