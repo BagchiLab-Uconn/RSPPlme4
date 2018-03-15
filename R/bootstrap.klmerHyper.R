@@ -64,6 +64,7 @@ bootstrap.klmerHyper <- function(mods, lin_comb, nboot, maxit =10,
       ## pull out the parameters from the bootstrapped model
       pars_r <- sapply(mods_r, getPars, lin_comb =lin_comb,
                        simplify=FALSE)
+      attr(pars_r, "bootmod") <- mods_r
       return(pars_r)
     },  mods=mods, resids=resids, lin_comb=lin_comb, maxit=maxit,
     simplify=FALSE)
