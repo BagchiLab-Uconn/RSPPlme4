@@ -90,6 +90,7 @@ confint.klmerHyper <- function(object, parm = NULL, level=0.95, lin_comb=NULL, b
   ci_boot <- list(predictions = preds, pars_fixed=pars_fixed)
   attr(ci_boot, "level") <- level
   attr(ci_boot, "bootobj") <- bootobj
+  attr(ci_boot, "model") <- object
   class(ci_boot) <- "klmerci"
   return(ci_boot)
 }
