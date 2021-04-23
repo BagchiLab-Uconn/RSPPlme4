@@ -4,9 +4,18 @@
 \alias{confint.klmerHyper}
 \title{Calculate Bootstrap Confidence Intervals on a klmerHyper object.}
 \usage{
-\method{confint}{klmerHyper}(object, parm = NULL, level = 0.95,
-  lin_comb = NULL, bootobj = NULL, nboot = NULL, ncore = 1,
-  cltype = "PSOCK", iseed = NULL, ...)
+\method{confint}{klmerHyper}(
+  object,
+  parm = NULL,
+  level = 0.95,
+  lin_comb = NULL,
+  bootobj = NULL,
+  nboot = NULL,
+  ncore = 1,
+  cltype = "PSOCK",
+  iseed = NULL,
+  ...
+)
 }
 \arguments{
 \item{object}{A \code{\link{klmerHyper}} object.}

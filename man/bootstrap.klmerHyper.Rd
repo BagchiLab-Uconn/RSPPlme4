@@ -4,8 +4,15 @@
 \alias{bootstrap.klmerHyper}
 \title{Bootstrap on klmer models to obtain confidence intervals.}
 \usage{
-bootstrap.klmerHyper(mods, lin_comb, nboot, maxit = 10, ncore = 1,
-  cltype = "PSOCK", iseed = NULL)
+bootstrap.klmerHyper(
+  mods,
+  lin_comb,
+  nboot,
+  maxit = 10,
+  ncore = 1,
+  cltype = "PSOCK",
+  iseed = NULL
+)
 }
 \arguments{
 \item{mods}{A \code{\link{klmerHyper}} object.}

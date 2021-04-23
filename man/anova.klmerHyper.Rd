@@ -4,8 +4,17 @@
 \alias{anova.klmerHyper}
 \title{Compare Models with and without a Parameter of Interest.}
 \usage{
-\method{anova}{klmerHyper}(object, term, dists, nboot, maxit = 50,
-  ncore = 1, cltype = "PSOCK", iseed = NULL, ...)
+\method{anova}{klmerHyper}(
+  object,
+  term,
+  dists,
+  nboot,
+  maxit = 50,
+  ncore = 1,
+  cltype = "PSOCK",
+  iseed = NULL,
+  ...
+)
 }
 \arguments{
 \item{object}{An object of class \code{\link{klmerHyper}}}

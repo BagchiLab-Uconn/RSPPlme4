@@ -3,11 +3,11 @@
 #'
 #' @param formula Model formula following \code{\link[lme4]{lmer}} syntax, with
 #' left hand side a k-function object.
-#' @param hyper \code{\link[spatstat]{hyperframe}} with  k functions, weights,
+#' @param hyper \code{\link[spatstat.geom]{hyperframe}} with  k functions, weights,
 #'  grouping factors and covariates
 #' @param weights  List of weights for each point pattern.
 #' @param r Distances at which to fit model
-#' @param correction Edge correction. See \code{\link[spatstat]{Kest}}.
+#' @param correction Edge correction. See \code{\link[spatstat.core]{Kest}}.
 #' @param minsamp Minimum number of points to include point pattern in model.
 #' Not currently used.
 #' @param na.action How to deal with missing data.
@@ -31,7 +31,7 @@ klmerHyper <- function(formula, hyper, weights, r, correction,
 
   hyper$weights <- hyper$wts
 
-  hyper$k <- hyper[ ,all.vars(update(formula, .~0))]
+  hyper$k <- hyper[ , all.vars(update(formula, .~0))]
 
       ## Do not model distances where the variance is 0
   dist.keep <-  (apply(sapply(hyper$k, function(K) K[[correction]][K$r %in% r]), 1,

@@ -4,9 +4,13 @@
 \alias{kfuncWeightsCalc}
 \title{Constructs the weights argument from a few simple rules.}
 \usage{
-kfuncWeightsCalc(pppx, pppy = NULL, r = NULL, correction = NULL,
-  type = c("nx", "nx_A", "nx2", "nx2_A", "sqrtnxny", "nxny", "nxny_A",
-  "sqrtnxny_A"))
+kfuncWeightsCalc(
+  pppx,
+  pppy = NULL,
+  r = NULL,
+  correction = NULL,
+  type = c("nx", "nx_A", "nx2", "nx2_A", "sqrtnxny", "nxny", "nxny_A", "sqrtnxny_A")
+)
 }
 \arguments{
 \item{pppx}{A point pattern.}
@@ -16,7 +20,7 @@ kfuncWeightsCalc(pppx, pppy = NULL, r = NULL, correction = NULL,
 \item{r}{A vector of distances to evaluate K at.}
 
 \item{correction}{The edge correction to use - refer to
-\code{\link[spatstat]{Kest}} for options.}
+\code{\link{Kest}} for options.}
 
 \item{type}{A string designating the types of weights to be calculated.}
 }
@@ -32,11 +36,14 @@ Uses the functions abundanceWeightsCalc and ratioWeightsCalc
 to do the actual calculations.
 }
 \examples{
-x <- spatstat::rpoint(20)
-y <- spatstat::rpoint(20)
+library(spatstat)
+x <- rpoint(20)
+y <- rpoint(20)
 ratioWeightsCalc(x, y, r=seq(0, 0.25, 0.05), correction = "border")
 }
 \seealso{
-Other RSPP weight calculations: \code{\link{abundanceWeightsCalc}},
-  \code{\link{ratioWeightsCalc}}
+Other RSPP weight calculations: 
+\code{\link{abundanceWeightsCalc}()},
+\code{\link{ratioWeightsCalc}()}
 }
+\concept{RSPP weight calculations}

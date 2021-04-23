@@ -22,12 +22,14 @@ A vector with the denominator of the K functions for each point
 Takes a Point Pattern and Calculates the Denominator of the K Function.
 }
 \examples{
-x <- spatstat::rpoint(20)
-y <- spatstat::rpoint(20)
+x <- spatstat.core::rpoint(20)
+y <- spatstat.core::rpoint(20)
 ratioWeightsCalc(x, y, r=seq(0, 0.2, 0.05), correction = "border")
 
 }
 \seealso{
-Other RSPP weight calculations: \code{\link{abundanceWeightsCalc}},
-  \code{\link{kfuncWeightsCalc}}
+Other RSPP weight calculations: 
+\code{\link{abundanceWeightsCalc}()},
+\code{\link{kfuncWeightsCalc}()}
 }
+\concept{RSPP weight calculations}

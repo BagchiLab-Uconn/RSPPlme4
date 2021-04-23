@@ -4,13 +4,13 @@
 #' @param r A vector of distances to evaluate K at.
 #' @param type A string designating the types of weights to be calculated.
 #' @param correction The edge correction to use - refer to
-#' \code{\link[spatstat]{Kest}} for options.
+#' \code{\link{Kest}} for options.
 #' @return A vector of weights for the K function with length equal to that of
 #' r.
 #' @examples
-#' x <- spatstat::rpoint(20)
-#' y <- spatstat::rpoint(20)
-#' ratioWeightsCalc(x, y, r=seq(0, 0.25, 0.05), correction = "border")
+#' x <- spatstat.core::rpoint(20)
+#' y <- spatstat.core::rpoint(20)
+#' kfuncWeightsCalc(x, y, r=seq(0, 0.25, 0.05), correction = "border", type="nx_A")
 #' @family RSPP weight calculations
 #' @details Uses the functions abundanceWeightsCalc and ratioWeightsCalc
 #' to do the actual calculations.

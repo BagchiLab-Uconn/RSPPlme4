@@ -4,21 +4,30 @@
 \alias{klmerHyper}
 \title{Fits klmer at specified distances from a hyperframe with kfunctions and covariates.}
 \usage{
-klmerHyper(formula, hyper, weights, r, correction, minsamp = NA,
-  na.action = "na.omit", printwarnings = TRUE, ...)
+klmerHyper(
+  formula,
+  hyper,
+  weights,
+  r,
+  correction,
+  minsamp = NA,
+  na.action = "na.omit",
+  printwarnings = TRUE,
+  ...
+)
 }
 \arguments{
 \item{formula}{Model formula following \code{\link[lme4]{lmer}} syntax, with
 left hand side a k-function object.}
 
-\item{hyper}{\code{\link[spatstat]{hyperframe}} with  k functions, weights,
+\item{hyper}{\code{\link[spatstat.geom]{hyperframe}} with  k functions, weights,
 grouping factors and covariates}
 
 \item{weights}{List of weights for each point pattern.}
 
 \item{r}{Distances at which to fit model}
 
-\item{correction}{Edge correction. See \code{\link[spatstat]{Kest}}.}
+\item{correction}{Edge correction. See \code{\link[spatstat.core]{Kest}}.}
 
 \item{minsamp}{Minimum number of points to include point pattern in model.
 Not currently used.}

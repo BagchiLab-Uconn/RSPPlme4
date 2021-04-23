@@ -7,19 +7,17 @@
 #' @param Acorr Correct for pattern area.
 #' @param r A vector of distances to evaluate K at.
 #' @param correction The edge correction to use. Refer to
-#' \code{\link[spatstat]{Kest}} for options.
+#' \code{\link[spatstat.core]{Kest}} for options.
 #' Only \code{border} is currently implemented, although NULL will also work
 #' when no edge correction is required (e.g. in plus-sampling designs).
 #'
 #' @return A vector of weights of length r.
 #'
 #' @examples
-#' x <- spatstat::rpoint(20)
-#' y <- spatstat::rpoint(20)
-#' ## Calculates the weights based on the number of points in x and y
-#' ## where weights = n_x/A
-#' abundanceWeightsCalc(x, y, r=seq(0, 0.2, 0.05), square=FALSE,
-#' correction = "border")
+#' x <- spatstat.core::rpoint(20)
+#' y <- spatstat.core::rpoint(20)
+#' abundanceWeightsCalc(x, y, r=seq(0, 0.2, 0.05), correction = "border")
+
 #' @family RSPP weight calculations
 #'
 #' @export
@@ -35,7 +33,7 @@ abundanceWeightsCalc <- function(pppx, pppy=NULL,
   if(!is.null(correction)) ## if correction - implement the correction
   {
     if(correction=='border')
-      pppx_c <- sapply(r, function(ri) pppx[spatstat::erosion(pppx$window, ri)],
+      pppx_c <- sapply(r, function(ri) pppx[spatstat.geom::erosion(pppx$window, ri)],
                        simplify=FALSE)
     else
       stop(paste("Correction for", correction,
@@ -45,21 +43,21 @@ abundanceWeightsCalc <- function(pppx, pppy=NULL,
   else ## for null corrections - i.e. no correction requested
       pppx_c <-  sapply(r, function(r) pppx, simplify=FALSE)
 
-  wx <- sapply(pppx_c, spatstat::npoints) ## number of points
+  wx <- sapply(pppx_c, spatstat.geom::npoints) ## number of points
 
   if(square)
   {
     if(!is.null(pppy))
-      wx <- wx*spatstat::npoints(pppy)
+      wx <- wx*spatstat.geom::npoints(pppy)
     else
-      wx <- wx*spatstat::npoints(pppx)
+      wx <- wx*spatstat.geom::npoints(pppx)
   }
 
   if(Acorr)
     if(!is.null(pppy))
-      wx <- wx/spatstat::area(pppy)
+      wx <- wx/spatstat.geom::area(pppy)
   else
-    wx <- wx/spatstat::area(pppx)
+    wx <- wx/spatstat.geom::area(pppx)
 
   return(wx)
 }

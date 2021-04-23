@@ -1,0 +1,159 @@
+---
+title: "Introduction to the RSPPlme4 package"
+author: "Robert Bagchi"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+graphics: yes
+output:
+  pdf_document:
+    toc: yes
+  github_document:
+    toc: yes
+    toc_depth: 5
+    pandoc_args: --webtex
+  html_document:
+    keep_md: yes
+    theme: readable
+    mathjax: default
+  html_notebook:
+    code_folding: hide
+    theme: readable
+    mathjax: default
+header-includes:
+  \usepackage{float}
+  \floatplacement{figure}{H}
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include = F}
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @@@@@ Knitr Options
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+# Set root directory to the project directory
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+
+
+# Set default knitr options: 
+# Suppress warnings and messages, cache chunks, 
+#  set default figure size to 6x8 at 300 dpi, and save a png and pdf
+knitr::opts_chunk$set(warning = F, message = F, collapse = T, cache = T,
+    fig.height = 6, fig.width = 8, dpi = 300, # 6x8" @ 300dpi:1800x2400=4.3MP
+    dev = c('png', 'pdf'), dev.args = list(pdf = list(onefile = F)))
+
+```
+
+If you need to install the package, the easiest way is to do so directly from github using the devtools package. Once you have the dependencies for the package (`spatstat`, `lme4`, `abind`, `Matrix` and `stats`) and `devtools` installed, the `RSPPlme4` package can be installed with:
+
+`devtools::install_github("BagchiLab-Uconn/RSPPlme4")`
+
+```{r packages, include = T}
+
+library(tidyverse)
+library(spatstat)
+library(RSPPlme4)
+
+```
+
+```{r set_themes, include = F}
+library(ggthemes)
+theme_set(theme_tufte())
+```
+
+
+# Introduction
+
+The purpose of the `RSPPlme4` package (which stands for "Replicated Spatial Point Patterns using lme4") is to provide a platform for consistently expressing the second-order structure of spatial point patterns as functions of covariates. The framework accommodates both "fixed" and "random" effects.
+
+This document will provide some examples of the functionality of the package and fit some simple models to data.
+
+# Examples
+
+## Example 1: a simulated data set
+
+The first example will use a simulated data set. The simulated data consist of 50 point patterns, randomly allocated to 10 groups (`gr`).  Each point pattern is associated with a randomly sampled value of a covariate, `x`. 
+
+### Simulate data
+The `spatstat` package has a structure, called a `hyperframe` that allows combination of data frames (which combines equal-lengthed columns of variables) with more complex data structures and objects - for example, when each row in the column is a vector or a function. In our case, we want columns where each element is a point pattern or a K-function. The hyperframe object allows us to do that.
+
+```{r}
+dat <- data.frame(x=runif(50, 0, 10), gr = sample(1:10, 50, replace=T))
+dat <- as.hyperframe(dat)
+dat$pppx <- replicate(50, rpoispp(runif(1, 20, 100)), simplify=FALSE)
+
+```
+
+### Calculate K-functions
+The models actually take the k-function as a response, not the point pattern (this could change in the future). Calculating the k-function with the spatstat function is simple enough. The two decisions we have to make are 
+
+1. What distances we want to calculate it at. This should not be a crucial decision. In general, we will want the lower bound to be $0$. The upper bound can be whatever makes sense to your question (how far apart do point need to be to be independent of each other?). In general it is recommended that K should not be estimated beyond $1/4$ the shortest edge of the area. 
+
+2. What edge correction to be used. Technically, border corrections are less important for replicated spatial point patterns than single point pattern analyses. However, it probably doesn't harm to include one here. The "border" correction is about the simplest correction avaialable (it considers points in a "border" area as neighbours but not focal points). We will use that here. If in doubt, play with the various options available in the `Kest` function.
+
+```{r calculate_k}
+r <- seq(0, 0.25, 0.05)
+dat$k <- lapply(dat$pppx, Kest, r=r, correction='border')
+```
+
+
+### Weights
+
+There are a number of options in the literature (discussed in Bagchi & Illian (2015)), and several computed by the `kfuncsWeightsCalc` function. The option we will use here is "nx_A". You can try other options to see how it changes the inference, and in general, I'd recommend trying a few options to make sure that your conclusions are not too sensitive to your choice.
+
+
+```{r calculate_wts}
+dat$wts <- lapply(dat$pppx, RSPPlme4::kfuncWeightsCalc, r=r,
+                   correction="border", type="nx_A")
+```
+
+
+### Fit the model
+
+The model fitting itself is relatively simple, once we have all the pieces in place. The function requires that the right-hand side of the equation is a K-function object and the left-hand side is a model formula in the style of lme4. We also need to specify the distances at which K will be estimated (these have to match the ones we calculated K at, although they can be a subset). We also need to tell the function where the weights are. 
+
+In these examples, you'll probably get a few warnings about singular fits. These warnings are unsurprising given that the covariates don't actually have an effect on the point patterns.
+```{r fit_mod}
+mod1 <- klmerHyper(formula = k ~x + (1|gr), r=seq(0, .25, .05),
+                   hyper=dat, correction='border', weights = wts,
+                   na.action="na.omit")
+mod1
+```
+
+There is a print method that provides the coefficients at each distance. In this case, the (Intercept) parameter tells us what the 
+
+### Get confidence intervals
+
+The confidence intervals are still a little painful to obtain. The main challenge is defining the linear combination to use in the bootstrapping - basically, the algorithm will calculate the bootstrapped parameters multiplied by this matrix to get the bootstrapped confidence intervals of the predictions. 
+
+
+```{r confints}
+preddat <- data.frame(x=c(0, 10))
+Xmat <- model.matrix(~x, data=preddat)  
+
+mod1_cis <- confint(mod1, level=0.95, lin_comb=Xmat, nboot=99, ncore=15, iseed=1234)
+
+mod1_cis
+```
+
+The print method gives the confidence intervals on the parameter estimates. Eventually, I will revise the code so that a call to `confint` without a linear predictior object provides just the cis on the parameter estimates.
+
+
+### Explore the model
+
+The package doesn't have nearly enough options for visualizing the output at the moment. However, I did write a number of functions in my last analysis which will eventually get folded into the package. They are contained in the "ConvenienceFunctions_lmer.R" script. Some of them don't work now (tidyr was in transition when I wrote them).
+
+```{r plotting}
+source("tutorial/ConvenienceFunctions_klmer.R")
+plot(mod1)
+plot(mod1_cis)
+```
+
+# Session Information
+
+```{r Session_Info, echo = F, comment = ""}
+
+# Add session information to help with reproduceability
+sessionInfo()
+
+```

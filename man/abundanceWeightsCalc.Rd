@@ -5,8 +5,14 @@
 \title{A function to calculate the weights based on the abundance
 of points only.}
 \usage{
-abundanceWeightsCalc(pppx, pppy = NULL, square = FALSE, Acorr = FALSE,
-  r = NULL, correction = NULL)
+abundanceWeightsCalc(
+  pppx,
+  pppy = NULL,
+  square = FALSE,
+  Acorr = FALSE,
+  r = NULL,
+  correction = NULL
+)
 }
 \arguments{
 \item{pppx}{A point pattern.}
@@ -20,7 +26,7 @@ abundanceWeightsCalc(pppx, pppy = NULL, square = FALSE, Acorr = FALSE,
 \item{r}{A vector of distances to evaluate K at.}
 
 \item{correction}{The edge correction to use. Refer to
-\code{\link[spatstat]{Kest}} for options.
+\code{\link[spatstat.core]{Kest}} for options.
 Only \code{border} is currently implemented, although NULL will also work
 when no edge correction is required (e.g. in plus-sampling designs).}
 }
@@ -32,14 +38,13 @@ A function to calculate the weights based on the abundance
 of points only.
 }
 \examples{
-x <- spatstat::rpoint(20)
-y <- spatstat::rpoint(20)
-## Calculates the weights based on the number of points in x and y
-## where weights = n_x/A
-abundanceWeightsCalc(x, y, r=seq(0, 0.2, 0.05), square=FALSE,
-correction = "border")
+x <- spatstat.core::rpoint(20)
+y <- spatstat.core::rpoint(20)
+abundanceWeightsCalc(x, y, r=seq(0, 0.2, 0.05), correction = "border")
 }
 \seealso{
-Other RSPP weight calculations: \code{\link{kfuncWeightsCalc}},
-  \code{\link{ratioWeightsCalc}}
+Other RSPP weight calculations: 
+\code{\link{kfuncWeightsCalc}()},
+\code{\link{ratioWeightsCalc}()}
 }
+\concept{RSPP weight calculations}
