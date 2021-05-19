@@ -19,7 +19,7 @@
 #'
 #'
 klmerHyper <- function(formula, hyper, weights, r, correction,
-                       minsamp=NA, na.action="na.omit", printwarnings=TRUE, ...)
+                       minsamp=NA, na.action="na.omit", printwarnings=TRUE)
 {
 
   mc <- match.call()
@@ -30,7 +30,14 @@ klmerHyper <- function(formula, hyper, weights, r, correction,
   wts <- deparse(substitute(weights))
 
   hyper$weights <- hyper$wts
-
+  
+  zero_wts <- sapply(hyper$weights, function(x) any(x ==0))
+  if(any(zero_wts))
+    stop(paste("Rows ", 
+               paste(which(zero_wts), collapse = ", "), 
+               " have zero weights")
+         )
+  
   hyper$k <- hyper[ , all.vars(update(formula, .~0))]
 
       ## Do not model distances where the variance is 0
@@ -58,7 +65,7 @@ klmerHyper <- function(formula, hyper, weights, r, correction,
     }, ri=ri)
 
     mod <- klmer(formula=formula, k=k_i, data=as.data.frame(hyper, warn=FALSE),
-                               weights=weights_i, na.action=na.action, ...)
+                               weights=weights_i, na.action=na.action)
     return(mod)
   }, simplify=FALSE)
 
