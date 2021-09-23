@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{object to be printed}
 
-\item{...}{Additoinal arguments to print. Not implemented yet.}
+\item{...}{Additional arguments to print. Not implemented yet.}
 }
 \description{
 Print KlmerHyper Objects

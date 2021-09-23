@@ -13,7 +13,7 @@
 #' @param iseed Random number seed.
 #' @param ... Additional arguments, currently ignored.
 #'
-#' @return Returns the confidence intervals on an klmer object.
+#' @return Returns the confidence intervals on an klmerHyper object.
 #' @export
 #'
 confint.klmerHyper <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootobj=NULL,

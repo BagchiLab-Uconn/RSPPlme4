@@ -40,7 +40,7 @@ the bootstrap is run internally.}
 \item{...}{Additional arguments, currently ignored.}
 }
 \value{
-Returns the confidence intervals on an klmer object.
+Returns the confidence intervals on an klmerHyper object.
 }
 \description{
 Calculate Bootstrap Confidence Intervals on a klmerHyper object.

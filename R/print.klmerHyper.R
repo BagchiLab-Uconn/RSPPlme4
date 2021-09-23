@@ -2,7 +2,7 @@
 #' Print KlmerHyper Objects
 #'
 #' @param x object to be printed
-#' @param ... Additoinal arguments to print. Not implemented yet.
+#' @param ... Additional arguments to print. Not implemented yet.
 #'
 #' @export
 #'
