@@ -36,10 +36,9 @@ Uses the functions abundanceWeightsCalc and ratioWeightsCalc
 to do the actual calculations.
 }
 \examples{
-library(spatstat)
-x <- rpoint(20)
-y <- rpoint(20)
-ratioWeightsCalc(x, y, r=seq(0, 0.25, 0.05), correction = "border")
+x <- spatstat.core::rpoint(20)
+y <- spatstat.core::rpoint(20)
+kfuncWeightsCalc(x, y, r=seq(0, 0.25, 0.05), correction = "border", type="nx_A")
 }
 \seealso{
 Other RSPP weight calculations: 

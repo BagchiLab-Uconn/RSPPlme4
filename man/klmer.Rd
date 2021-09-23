@@ -4,7 +4,7 @@
 \alias{klmer}
 \title{function to fit mixed effects model to k functions at a set distance}
 \usage{
-klmer(formula, k, data, weights, na.action = "na.omit", ...)
+klmer(formula, k, data, weights, na.action = "na.omit")
 }
 \arguments{
 \item{formula}{A one-sided formula describing the model to be fit, following}
@@ -18,8 +18,6 @@ the lme4 syntax. See \code{\link[lme4]{lmer}}}
 
 \item{na.action}{How to deal with missing values.
 See \code{\link[stats]{na.action}}}
-
-\item{...}{Other arguments to \code{\link[lme4]{lmer}}}
 }
 \value{
 An object of class kfunclmer.

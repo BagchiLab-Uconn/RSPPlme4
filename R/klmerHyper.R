@@ -12,7 +12,6 @@
 #' Not currently used.
 #' @param na.action How to deal with missing data.
 #' @param printwarnings Print warnings about distances with no variance?
-#' @param ... Additional arguments to \code{\link[lme4]{lmer}}
 #'
 #' @return Model output of class klmerHyper
 #' @export

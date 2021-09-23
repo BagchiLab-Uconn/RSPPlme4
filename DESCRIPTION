@@ -11,12 +11,16 @@ Description: Many analyses that use spatial point patterns seek answers
     using algorithms for mixed effects models from the 'lme4' package.
 Imports:
     abind (>= 1.4),
+    ggplot2 (>= 3.0.0),
     lme4 (>= 1.1-12),
     Matrix (>= 1.2-8),
+    rlang (> 0.4.0),
     spatstat (>= 1.50),
     spatstat.core (>= 2.1),
     spatstat.geom (>= 2.1),
-    stats (>= 3.3)
+    stats (>= 3.3),
+    tidyr (>= 1.0.0),
+    tidyverse (>= 1.0.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

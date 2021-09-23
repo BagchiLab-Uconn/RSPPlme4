@@ -12,8 +12,7 @@ klmerHyper(
   correction,
   minsamp = NA,
   na.action = "na.omit",
-  printwarnings = TRUE,
-  ...
+  printwarnings = TRUE
 )
 }
 \arguments{
@@ -35,8 +34,6 @@ Not currently used.}
 \item{na.action}{How to deal with missing data.}
 
 \item{printwarnings}{Print warnings about distances with no variance?}
-
-\item{...}{Additional arguments to \code{\link[lme4]{lmer}}}
 }
 \value{
 Model output of class klmerHyper

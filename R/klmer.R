@@ -10,7 +10,7 @@
 #' the lme4 syntax. See \code{\link[lme4]{lmer}}
 #' @param na.action How to deal with missing values.
 #' See \code{\link[stats]{na.action}}
-#' @param ... Other arguments to \code{\link[lme4]{lmer}}
+#' 
 #' @return An object of class kfunclmer.
 #'
 #' @export
