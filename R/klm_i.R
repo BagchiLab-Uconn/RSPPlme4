@@ -17,7 +17,7 @@
 
 
 
-klm_i <- function(formula, k, data, weights){
+klm_i <- function(formula, k, data, weights, na.action){
   weights <- weights/mean(weights)
   k_dataframe <- data.frame(k=k, data, weights = weights) # make data frame
   

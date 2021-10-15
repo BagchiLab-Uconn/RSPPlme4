@@ -17,7 +17,7 @@
 #' @export
 #'
 #'
-klmerHyper <- function(formula, hyper, weights, r, correction,
+klm <- function(formula, hyper, weights, r, correction,
                        minsamp=NA, na.action="na.omit", printwarnings=TRUE)
 {
 
@@ -26,17 +26,16 @@ klmerHyper <- function(formula, hyper, weights, r, correction,
   if(min(r) > 0)
     r <- c(0, r) ## Kest requires a 0 distance.
 
-  wts <- deparse(substitute(weights))
-
-  hyper$weights <- hyper$wts
+  hyper[["weights"]] <- hyper[, deparse(substitute(weights))]
   
-  zero_wts <- sapply(hyper$weights, function(x) any(x ==0))
+  
+  zero_wts <- sapply(hyper$weights, function(x) any(x == 0))
   if(any(zero_wts))
     stop(paste("Rows ", 
                paste(which(zero_wts), collapse = ", "), 
                " have zero weights")
          )
-  
+  ## set k as LHS of model formula
   hyper$k <- hyper[ , all.vars(update(formula, .~0))]
 
       ## Do not model distances where the variance is 0
@@ -63,14 +62,14 @@ klmerHyper <- function(formula, hyper, weights, r, correction,
       unlist(w)[ri]
     }, ri=ri)
 
-    mod <- klmer(formula=formula, k=k_i, data=as.data.frame(hyper, warn=FALSE),
+    mod <- klm_i(formula=formula, k=k_i, data=as.data.frame(hyper, warn=FALSE),
                                weights=weights_i, na.action=na.action)
     return(mod)
   }, simplify=FALSE)
 
   names(kmods) <- r[dist.keep]
 
-  class(kmods) <- 'klmerHyper'
+  class(kmods) <- 'klm'
   attr(kmods, "call") <- mc
   return(kmods)
 }
