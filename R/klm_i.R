@@ -13,20 +13,16 @@
 #' @return An object of class kfunclmer.
 #'
 #' @export
-#'
-
-
 
 klm_i <- function(formula, k, data, weights, na.action){
   weights <- weights/mean(weights)
   k_dataframe <- data.frame(k=k, data, weights = weights) # make data frame
   
-  k_data.frame <- data.frame(k=k, data, weights=weights) ## extract data
   ## add K to lhs of formula
   formula <-  stats::update(formula, k~.)
   
   ## fit model 
-  lm_ki <- eval(substitute(lm(formula, data=k_data.frame, weights=weights,
+  lm_ki <- eval(substitute(lm(formula, data=k_dataframe, weights=weights,
                             x=T, y=T), list(formula = formula,
                                             k_dataframe=k_dataframe)))
   return(lm_ki)
