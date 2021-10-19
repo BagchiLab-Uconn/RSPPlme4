@@ -52,7 +52,6 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
   },est=mod_pars, simplify=FALSE)
   
   t_pars <- do.call(abind::"abind", args=list(t_pars, along=3))
-  dim(t_ci_pars)
 
   t_ci_pars <- apply(t_pars, c(1, 2), quantile, 
                      c(alpha/2, 1-alpha/2), na.rm = T)
