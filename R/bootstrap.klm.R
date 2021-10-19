@@ -4,7 +4,6 @@
 #' @param lin_comb Linear combination of the fixed parameters
 #' @return A bootstrap sample of predictions, their standard errors,
 #' fixed effects and variance covariance matrix for all distances.
-#' @export
 
 
 bootstrap.klm <- function(mods, lincomb)

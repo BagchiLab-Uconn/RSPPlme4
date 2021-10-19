@@ -11,8 +11,7 @@
 #' See \code{\link[stats]{na.action}}
 #' 
 #' @return An object of class kfunclmer.
-#'
-#' @export
+
 
 klm_i <- function(formula, k, data, weights, na.action){
   weights <- weights/mean(weights)

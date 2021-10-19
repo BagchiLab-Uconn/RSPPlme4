@@ -45,11 +45,13 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
   ## standard error and added to the fitted values.
   
   t_pars <- sapply(bsci, function(sim, est){
-    mapply(function(sim, est) {
+    do.call("cbind", mapply(function(sim, est) {
       t_r <- (sim$pars - est$pars)/(sim$se_pars)
-      est$pars - t_r * est$se_pars
-    },  sim=sim, est=est, SIMPLIFY=TRUE)
+      (((est$pars - t_r * est$se_pars)))
+    },  sim=sim, est=est, SIMPLIFY=FALSE))
   },est=mod_pars, simplify=FALSE)
+  
+  
   
   t_pars <- do.call(abind::"abind", args=list(t_pars, along=3))
 
@@ -62,14 +64,15 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
   ucl_pars <-
     sapply(mod_pars, function(x) x$pars) -
     t_ci_pars[1 , ,] * sapply(mod_pars, function(x) x$se_pars)
-  est_pars <- sapply(mod_pars, function(x) x$pars)
+  
+  est_pars <-sapply(mod_pars, function(x) x$pars, simplify = TRUE)
   
   est_pars <- abind::abind(
-    list(
-      "estimate" = est_pars,
-      abind::"abind"("lower" = lcl_pars, "upper" = ucl_pars, along = 3)
-    ),  along = 3)
-  
+    estimate = est_pars, 
+    lower = lcl_pars, 
+    upper = ucl_pars, 
+    along = 3)
+
   t_pred <- lapply(bsci, function(sim, obs){
     do.call('cbind',  mapply(function(obs.t, sim.t){
       t.score.t <- (sim.t$pred - obs.t$pred)/sim.t$se_pred
