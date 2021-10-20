@@ -13,7 +13,7 @@
 #' @return Returns the confidence intervals on an klm object.
 #' @export
 
-confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
+confint.klm <- function(object, lin_comb = NULL, nboot=1, level, iseed = NULL, ...){
   
   ## repeats the bootstrap from lm.boot nsim times
   alpha <-  1 - level ## simplify calculations by taking 1 - alpha.
@@ -25,7 +25,13 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
     set.seed(iseed)
   }
   
-  bsci <- replicate(nsim, bootstrap.klm(object, lincomb=lincomb), simplify=FALSE)
+  if(is.null(lin_comb))
+  {
+    form <- update(formula(object[[1]]), NULL~.)
+    lin_comb <- model.matrix(form, data=as.data.frame(dat, warn=FALSE))
+  }
+  
+  bsci <- replicate(nboot, bootstrap.klm(object, lin_comb=lin_comb), simplify=FALSE)
   
   ## extracts the observed k-function and standard error
   mod_pars <- lapply(object, function(x)
@@ -36,8 +42,8 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
 # extracts the predicted K-function and standard errors
   exp_pred <- lapply(object, function(mod_i)
   {
-    pred <- lincomb %*% coef(mod_i)
-    se_pred <- sqrt(diag(lincomb %*% vcov(mod_i) %*% t(lincomb)))
+    pred <- lin_comb %*% coef(mod_i)
+    se_pred <- sqrt(diag(lin_comb %*% vcov(mod_i) %*% t(lin_comb)))
     return(list(pred=pred, se_pred=se_pred))
   })
   

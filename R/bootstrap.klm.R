@@ -7,7 +7,7 @@
 #' fixed effects and variance covariance matrix for all distances.
 
 
-bootstrap.klm <- function(mods, lincomb)
+bootstrap.klm <- function(mods, lin_comb)
 {
   resids <-
     lapply(mods, residHomogenise.klm) ## extract exchangable residuals
@@ -19,7 +19,7 @@ bootstrap.klm <- function(mods, lincomb)
   # repeated at all distances
   ## extract the bootstraped K function for 1 iteration
   preds.all <- mapply(
-    function(mod, resids, lincomb,  indx) {
+    function(mod, resids, lin_comb,  indx) {
       k_dataframe <- as.data.frame(mod$model)
       mod <- eval(getCall(mod))
       if (length(resids[indx]) == length(mod$weights)) {
@@ -33,8 +33,8 @@ bootstrap.klm <- function(mods, lincomb)
                            data = k_dataframe)
           pars <- coef(modnew)
           se_pars <- sqrt(diag(vcov(modnew)))
-          pred <- lincomb %*% coef(modnew)
-          se_pred  <- sqrt(diag(lincomb %*% vcov(modnew) %*% t(lincomb)))
+          pred <- lin_comb %*% coef(modnew)
+          se_pred  <- sqrt(diag(lin_comb %*% vcov(modnew) %*% t(lin_comb)))
         }
       }
       
@@ -50,7 +50,7 @@ bootstrap.klm <- function(mods, lincomb)
     },
     mod = mods,
     resids = resids,
-    MoreArgs = list(indx = samp, lincomb = lincomb),
+    MoreArgs = list(indx = samp, lin_comb = lin_comb),
     SIMPLIFY = FALSE
   )
   return(preds.all)
