@@ -2,7 +2,9 @@
 % Please edit documentation in R/residHomogenise.klm.R
 \name{residHomogenise.klm}
 \alias{residHomogenise.klm}
-\title{Homogenises residuals from a lm object to make them exchangable.}
+\title{function to homogenise the residuals of a linear model
+to make them exchangable.
+Homogenises residuals from a lm object to make them exchangable.}
 \usage{
 residHomogenise.klm(mod)
 }
@@ -13,5 +15,7 @@ residHomogenise.klm(mod)
 List of residuals and random effects that are exchangable.
 }
 \description{
+function to homogenise the residuals of a linear model
+to make them exchangable.
 Homogenises residuals from a lm object to make them exchangable.
 }

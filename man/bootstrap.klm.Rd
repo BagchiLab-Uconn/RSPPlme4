@@ -12,7 +12,7 @@ bootstrap.klm(mods, lincomb)
 \item{lin_comb}{Linear combination of the fixed parameters}
 }
 \value{
-A bootstrap sample of predictions, their standard errors,
+A bootstrap sample of parameters, predictions, their standard errors,
 fixed effects and variance covariance matrix for all distances.
 }
 \description{

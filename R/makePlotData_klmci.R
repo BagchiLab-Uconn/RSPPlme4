@@ -1,7 +1,7 @@
-#' Format a klmerci object for plotting of parameters and confidence intervals
+#' Format a klmci object for plotting of parameters and confidence intervals
 #' from a bootstrap
 
-#' @param x A klmerci object from \code{\link{confint.klm}}
+#' @param x A klmci object from \code{\link{confint.klm}}
 
 #' @return a \code{\link[tibble]{tibble}} of fixed effects against distance.
 
@@ -12,7 +12,7 @@
 #' @importFrom rlang .data
 #' @export
 
-makePlotData_klmerci <- function(x){
+makePlotData_klmci <- function(x){
   dat <- x$pars
   dimnames(dat)[[1]][1] <- "Intercept"
   dat <- as.data.frame.table(dat)

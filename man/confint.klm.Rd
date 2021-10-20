@@ -21,7 +21,7 @@ the bootstrap is run internally.}
 \item{...}{Additional arguments, currently ignored.}
 }
 \value{
-Returns the confidence intervals on an klmerHyper object.
+Returns the confidence intervals on an klm object.
 }
 \description{
 Calculate confidence intervals on a klm object.

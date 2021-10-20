@@ -1,8 +1,8 @@
 
-#' Plot a klmerci object  with parameters and confidence intervals
+#' Plot a klmci object  with parameters and confidence intervals
 #' from a bootstrap
 
-#' @param x  A klmerci object from \code{\link{confint.klm}}.
+#' @param x  A klmci object from \code{\link{confint.klm}}.
 #' @param ... additional arguments (currently unused).
 #' 
 #' @return a ggplot object

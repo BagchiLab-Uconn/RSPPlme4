@@ -19,11 +19,14 @@ Builds a ggplot object to plot parameter estimates against distance
 }
 \seealso{
 Other RSPP plot functions: 
+\code{\link{autoplot.klmci}()},
 \code{\link{autoplot.klmerHyper}()},
 \code{\link{autoplot.klmerci}()},
+\code{\link{makePlotData_klmci}()},
 \code{\link{makePlotData_klmerHyper}()},
 \code{\link{makePlotData_klmerci}()},
 \code{\link{makePlotData_klm}()},
+\code{\link{plot.klmci}()},
 \code{\link{plot.klmerHyper}()},
 \code{\link{plot.klmerci}()},
 \code{\link{plot.klm}()}
