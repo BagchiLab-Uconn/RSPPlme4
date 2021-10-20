@@ -114,9 +114,7 @@ confint.klm <- function(object, lin_comb = NULL, nboot=1, level, iseed = NULL, .
   attr(ci_boot, "model") <- object
   class(ci_boot) <- "klmci"
   return(ci_boot)
-    # 
-    # return(list(lmK=mod, lmKpred=estimator,
-    #           lower=lower.CI, upper=upper.CI))
+
 }
 
 
