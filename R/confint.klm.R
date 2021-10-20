@@ -47,12 +47,12 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
   ## standard error and added to the fitted values.
   
   t_pars <- sapply(bsci, function(sim, est){
+    
     do.call("cbind", mapply(function(sim, est) {
       t_r <- (sim$pars - est$pars)/(sim$se_pars)
-      (((est$pars - t_r * est$se_pars)))
+      return(t_r)
     },  sim=sim, est=est, SIMPLIFY=FALSE))
   },est=mod_pars, simplify=FALSE)
-  
 
   t_pars <- do.call(abind::"abind", args=list(t_pars, along=3))
 
