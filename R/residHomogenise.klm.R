@@ -1,13 +1,12 @@
-########################################################################
-## function to homogenise the residuals of a linear model
-## to make them exchangable.
-#######################################################################
+
+#' function to homogenise the residuals of a linear model
+#' to make them exchangable.
+
 #' Homogenises residuals from a lm object to make them exchangable.
 
 #' @param mod  lm model
 
 #' @return List of residuals and random effects that are exchangable.
-#' @export
 
 
 residHomogenise.klm <- function(mod)

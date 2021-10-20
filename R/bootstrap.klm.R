@@ -2,7 +2,8 @@
 
 #' @param mods A \code{\link{klm}} object.
 #' @param lin_comb Linear combination of the fixed parameters
-#' @return A bootstrap sample of predictions, their standard errors,
+
+#' @return A bootstrap sample of parameters, predictions, their standard errors,
 #' fixed effects and variance covariance matrix for all distances.
 
 

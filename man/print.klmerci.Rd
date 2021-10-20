@@ -9,9 +9,9 @@
 \arguments{
 \item{x}{A klmerHyper object.}
 
-\item{type}{Print parameters, (pars, the default), or predictions (preds)}
+\item{type}{Print parameters, (pars, the default), or predictions (predictions)}
 
-\item{...}{Additoinal arguments to print. Not implemented yet.}
+\item{...}{Additional arguments to print. Not implemented yet.}
 }
 \value{
 No return value.

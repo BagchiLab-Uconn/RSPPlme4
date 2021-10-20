@@ -22,9 +22,12 @@ confidence intervals against distance
 \seealso{
 Other RSPP plot functions: 
 \code{\link{autoplot.klmerHyper}()},
+\code{\link{autoplot.klm}()},
 \code{\link{makePlotData_klmerHyper}()},
 \code{\link{makePlotData_klmerci}()},
+\code{\link{makePlotData_klm}()},
 \code{\link{plot.klmerHyper}()},
-\code{\link{plot.klmerci}()}
+\code{\link{plot.klmerci}()},
+\code{\link{plot.klm}()}
 }
 \concept{RSPP plot functions}
