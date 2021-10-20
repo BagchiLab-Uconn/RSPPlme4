@@ -27,17 +27,19 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
   
   bsci <- replicate(nsim, bootstrap.klm(object, lincomb=lincomb), simplify=FALSE)
   
-  
+  ## extracts the observed k-function and standard error
   mod_pars <- lapply(object, function(x)
   {
     list(pars = coef(x), se_pars = sqrt(diag(vcov(x))))
   })
   
-  ## extracts the observed k-function and standard error
-  exp_pred <- lapply(object, function(mod_i){
+# extracts the predicted K-function and standard errors
+  exp_pred <- lapply(object, function(mod_i)
+  {
     pred <- lincomb %*% coef(mod_i)
     se_pred <- sqrt(diag(lincomb %*% vcov(mod_i) %*% t(lincomb)))
-    return(list(pred=pred, se_pred=se_pred))})
+    return(list(pred=pred, se_pred=se_pred))
+  })
   
   # t-distribution uses the difference between each
   ## bootstrap and the fitted, divides by the bootstrap standard error
@@ -51,28 +53,30 @@ confint.klm <- function(object, lincomb, nsim=1, level, iseed = NULL){
     },  sim=sim, est=est, SIMPLIFY=FALSE))
   },est=mod_pars, simplify=FALSE)
   
-  
-  
+
   t_pars <- do.call(abind::"abind", args=list(t_pars, along=3))
 
   t_ci_pars <- apply(t_pars, c(1, 2), quantile, 
                      c(alpha/2, 1-alpha/2), na.rm = T)
   lcl_pars <-
-    sapply(mod_pars, function(x) x$pars) -
-    t_ci_pars[2 , ,] * sapply(mod_pars, function(x) x$se_pars)
-
-  ucl_pars <-
-    sapply(mod_pars, function(x) x$pars) -
-    t_ci_pars[1 , ,] * sapply(mod_pars, function(x) x$se_pars)
+    do.call("cbind", 
+            lapply(mod_pars, function(x) x$pars)) -
+    t_ci_pars[2 , ,] * 
+    do.call("cbind", lapply(mod_pars, function(x) x$se_pars))
   
-  est_pars <-sapply(mod_pars, function(x) x$pars, simplify = TRUE)
+  ucl_pars <-
+    do.call("cbind", lapply(mod_pars, function(x) x$pars)) -
+    t_ci_pars[1 , ,] * 
+      do.call("cbind", lapply(mod_pars, function(x) x$se_pars))
+  
+  est_pars <- do.call("cbind", lapply(mod_pars, function(x) x$pars))
   
   est_pars <- abind::abind(
     estimate = est_pars, 
     lower = lcl_pars, 
     upper = ucl_pars, 
     along = 3)
-
+  
   t_pred <- lapply(bsci, function(sim, obs){
     do.call('cbind',  mapply(function(obs.t, sim.t){
       t.score.t <- (sim.t$pred - obs.t$pred)/sim.t$se_pred
