@@ -2,20 +2,20 @@
 #' Calculate confidence intervals on a klm object.
 #'
 #' @param object A \code{\link{klm}} object.
+#' @param parm Parameter to get confidence interval for. Currently ignored.
 #' @param level Desired confidence intervals.
-#' @param lin_comb Linear combintaion of the fixed parameters
-#' @param object Bootstrap object run outside function. Defaults to NULL so
-#' the bootstrap is run internally.
 #' @param nboot Number of bootstrap simulations.
+#' @param lin_comb Linear combination of the fixed parameters. Defaulats
+#' to NULL to extract it from the fitted model.
 #' @param iseed Random number seed.
 #' @param ... Additional arguments, currently ignored.
+
 #'
 #' @return Returns the confidence intervals on an klm object.
 #' @export
 
-confint.klm <- function(object, lin_comb = NULL, nboot=1, level, iseed = NULL, ...){
+confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, iseed = NULL, ...){
   
-  ## repeats the bootstrap from lm.boot nsim times
   alpha <-  1 - level ## simplify calculations by taking 1 - alpha.
   
   if(!is.null(iseed))
@@ -26,18 +26,18 @@ confint.klm <- function(object, lin_comb = NULL, nboot=1, level, iseed = NULL, .
   }
   
   if(is.null(lin_comb))
-  {
-    form <- update(formula(object[[1]]), NULL~.)
-    lin_comb <- model.matrix(form, data=as.data.frame(dat, warn=FALSE))
-  }
+      lin_comb <- object[[1]]$x
   
+  
+  ## repeats the bootstrap from lm.boot nboot times
   bsci <- replicate(nboot, bootstrap.klm(object, lin_comb=lin_comb), simplify=FALSE)
   
   ## extracts the observed k-function and standard error
   mod_pars <- lapply(object, function(x)
-  {
-    list(pars = coef(x), se_pars = sqrt(diag(vcov(x))))
-  })
+    list(
+      pars = coef(x), 
+      se_pars = sqrt(diag(vcov(x))))
+    )
   
 # extracts the predicted K-function and standard errors
   exp_pred <- lapply(object, function(mod_i)
@@ -82,13 +82,12 @@ confint.klm <- function(object, lin_comb = NULL, nboot=1, level, iseed = NULL, .
     lower = lcl_pars, 
     upper = ucl_pars, 
     along = 3)
-  
+
   t_pred <- lapply(bsci, function(sim, obs){
     do.call('cbind',  mapply(function(obs.t, sim.t){
       t.score.t <- (sim.t$pred - obs.t$pred)/sim.t$se_pred
-      t.score.t <- matrix(t.score.t, nc=1)
       return(t.score.t)}, obs.t= obs, sim.t=sim, SIMPLIFY=F))}, obs=exp_pred)
-  
+    
   t_pred <- do.call(abind::'abind', args=list(t_pred, along=3))
   
   t_ci_pred <- apply(t_pred, c(1, 2), quantile, 

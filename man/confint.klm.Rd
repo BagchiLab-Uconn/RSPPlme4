@@ -4,19 +4,29 @@
 \alias{confint.klm}
 \title{Calculate confidence intervals on a klm object.}
 \usage{
-\method{confint}{klm}(object, lincomb, nsim = 1, level, iseed = NULL)
+\method{confint}{klm}(
+  object,
+  parm,
+  level = 0.95,
+  lin_comb = NULL,
+  nboot = 1,
+  iseed = NULL,
+  ...
+)
 }
 \arguments{
-\item{object}{Bootstrap object run outside function. Defaults to NULL so
-the bootstrap is run internally.}
+\item{object}{A \code{\link{klm}} object.}
+
+\item{parm}{Parameter to get confidence interval for. Currently ignored.}
 
 \item{level}{Desired confidence intervals.}
 
-\item{iseed}{Random number seed.}
-
-\item{lin_comb}{Linear combintaion of the fixed parameters}
+\item{lin_comb}{Linear combination of the fixed parameters. Defaulats
+to NULL to extract it from the fitted model.}
 
 \item{nboot}{Number of bootstrap simulations.}
+
+\item{iseed}{Random number seed.}
 
 \item{...}{Additional arguments, currently ignored.}
 }

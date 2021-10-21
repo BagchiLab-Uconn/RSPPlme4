@@ -4,7 +4,7 @@
 \alias{bootstrap.klm}
 \title{bootstrapping function for klm models to obtain confidence intervals.}
 \usage{
-bootstrap.klm(mods, lincomb)
+bootstrap.klm(mods, lin_comb)
 }
 \arguments{
 \item{mods}{A \code{\link{klm}} object.}
