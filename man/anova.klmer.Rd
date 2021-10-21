@@ -6,7 +6,7 @@
 \usage{
 \method{anova}{klmer}(
   object,
-  term,
+  term = NULL,
   dists,
   nboot,
   maxit = 50,

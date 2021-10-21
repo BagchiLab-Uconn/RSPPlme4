@@ -7,9 +7,11 @@
 klmer(
   formula,
   hyper,
-  weights,
+  weights = NULL,
+  weights_type = NULL,
   r,
   correction,
+  ppx = NULL,
   minsamp = NA,
   na.action = "na.omit",
   printwarnings = TRUE
@@ -17,16 +19,21 @@ klmer(
 }
 \arguments{
 \item{formula}{Model formula following \code{\link[lme4]{lmer}} syntax, with
-left hand side a k-function object.}
+left hand side a K function object from \code{\link[spatstat.core]{Kest}} or 
+a \code{link[spatstat.geom]{ppp}}}
 
 \item{hyper}{\code{\link[spatstat.geom]{hyperframe}} with  k functions, weights,
 grouping factors and covariates}
 
-\item{weights}{List of weights for each point pattern.}
+\item{weights}{name (in quotes) of user defined weights column.}
+
+\item{weights_type}{The type of weights to be used if weights is not defined above. Ignored if weights is defined.}
 
 \item{r}{Distances at which to fit model}
 
 \item{correction}{Edge correction. See \code{\link[spatstat.core]{Kest}}.}
+
+\item{ppx}{A set of \code{\link[spatstat.geom]{ppp}} objects to use in calculating weights}
 
 \item{minsamp}{Minimum number of points to include point pattern in model.
 Not currently used.}
