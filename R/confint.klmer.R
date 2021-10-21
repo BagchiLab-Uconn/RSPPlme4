@@ -1,10 +1,10 @@
 
-#' Calculate Bootstrap Confidence Intervals on a klmerHyper object.
+#' Calculate Bootstrap Confidence Intervals on a klmer object.
 #'
-#' @param object A \code{\link{klmerHyper}} object.
+#' @param object A \code{\link{klmer}} object.
 #' @param parm Parameter to get confidence interval for. Currently ignored.
 #' @param level Desired confidence intervals.
-#' @param lin_comb Linear combintaion of the fixed parameters
+#' @param lin_comb Linear combination of the fixed parameters
 #' @param bootobj Bootstrap object run outside function. Defaults to NULL so
 #' the bootstrap is run internally.
 #' @param nboot Number of bootstrap simulations.
@@ -13,10 +13,10 @@
 #' @param iseed Random number seed.
 #' @param ... Additional arguments, currently ignored.
 #'
-#' @return Returns the confidence intervals on an klmerHyper object.
+#' @return Returns the confidence intervals on an klmer object.
 #' @export
 #'
-confint.klmerHyper <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootobj=NULL,
+confint.klmer <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootobj=NULL,
                                nboot=NULL, ncore=1, cltype="PSOCK", iseed=NULL, ...)
   {
 
@@ -32,7 +32,7 @@ confint.klmerHyper <- function(object, parm = NULL, level=0.95, lin_comb=NULL, b
     if(is.null(lin_comb))
       lin_comb <- lme4::getME(object[[1]], "X")
       
-    bootobj <- bootstrap.klmerHyper(object,lin_comb=lin_comb, nboot=nboot,
+    bootobj <- bootstrap.klmer(object,lin_comb=lin_comb, nboot=nboot,
                                          ncore=ncore, cltype=cltype, iseed=iseed)
 
   }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/plot.klm.R
 \name{plot.klm}
 \alias{plot.klm}
-\title{Plot a klmerHyper object. Plots parameter
-estimates distance}
+\title{Plot a klm object. Plots parameter estimates against distance}
 \usage{
 \method{plot}{klm}(x, ...)
 }
@@ -16,21 +15,20 @@ estimates distance}
 a ggplot object
 }
 \description{
-Plot a klmerHyper object. Plots parameter
-estimates distance
+Plot a klm object. Plots parameter estimates against distance
 }
 \seealso{
 Other RSPP plot functions: 
 \code{\link{autoplot.klmci}()},
-\code{\link{autoplot.klmerHyper}()},
 \code{\link{autoplot.klmerci}()},
+\code{\link{autoplot.klmer}()},
 \code{\link{autoplot.klm}()},
 \code{\link{makePlotData_klmci}()},
-\code{\link{makePlotData_klmerHyper}()},
 \code{\link{makePlotData_klmerci}()},
+\code{\link{makePlotData_klmer}()},
 \code{\link{makePlotData_klm}()},
 \code{\link{plot.klmci}()},
-\code{\link{plot.klmerHyper}()},
-\code{\link{plot.klmerci}()}
+\code{\link{plot.klmerci}()},
+\code{\link{plot.klmer}()}
 }
 \concept{RSPP plot functions}

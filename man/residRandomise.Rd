@@ -10,7 +10,7 @@ residRandomise(resids_e, mods)
 \item{resids_e}{= Homogenised level 1 residuals from
 \code{\link{residHomogenise}}.}
 
-\item{mods}{klmer models.}
+\item{mods}{klmer model.}
 }
 \value{
 A list of randomised level 1 residuals.

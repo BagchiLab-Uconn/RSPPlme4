@@ -1,7 +1,7 @@
 #' Builds a ggplot object to plot parameter estimates with their 
 #' confidence intervals against distance
 
-#' @param x A klmerci object from \code{\link{confint.klmerHyper}}.
+#' @param x A klmerci object from \code{\link{confint.klmer}}.
 #' @param ... additional arguments (currently unused).
 #' 
 #' @return a \code{\link[ggplot2]{ggplot}} object

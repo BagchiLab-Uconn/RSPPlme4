@@ -1,6 +1,6 @@
 #' Print klmer confidence interval objects
 #'
-#' @param x A klmerHyper object.
+#' @param x A klmer object.
 #' @param type Print parameters, (pars, the default), or predictions (predictions)
 #' @param ... Additional arguments to print. Not implemented yet.
 #'

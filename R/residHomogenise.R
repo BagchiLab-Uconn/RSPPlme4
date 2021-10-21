@@ -1,6 +1,6 @@
 #' Homogenises residuals from a lmer object to make them exchangable.
 #' @import stats lme4
-#' @param mods  klmerHyper model
+#' @param mods  klmer model
 #'
 #' @return List of residuals and random effects that are exchangable.
 #' @export

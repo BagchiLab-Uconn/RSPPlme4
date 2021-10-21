@@ -8,7 +8,7 @@ from a bootstrap}
 makePlotData_klmerci(x)
 }
 \arguments{
-\item{x}{A klmerci object from \code{\link{confint.klmerHyper}}}
+\item{x}{A klmerci object from \code{\link{confint.klmer}}}
 }
 \value{
 a \code{\link[tibble]{tibble}} of fixed effects against distance.
@@ -20,15 +20,15 @@ from a bootstrap
 \seealso{
 Other RSPP plot functions: 
 \code{\link{autoplot.klmci}()},
-\code{\link{autoplot.klmerHyper}()},
 \code{\link{autoplot.klmerci}()},
+\code{\link{autoplot.klmer}()},
 \code{\link{autoplot.klm}()},
 \code{\link{makePlotData_klmci}()},
-\code{\link{makePlotData_klmerHyper}()},
+\code{\link{makePlotData_klmer}()},
 \code{\link{makePlotData_klm}()},
 \code{\link{plot.klmci}()},
-\code{\link{plot.klmerHyper}()},
 \code{\link{plot.klmerci}()},
+\code{\link{plot.klmer}()},
 \code{\link{plot.klm}()}
 }
 \concept{RSPP plot functions}

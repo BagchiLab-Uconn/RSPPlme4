@@ -10,7 +10,6 @@
 #' @importFrom dplyr rename mutate
 #' @importFrom tidyr pivot_longer
 #' @importFrom rlang .data
-#' @export
 
 makePlotData_klmci <- function(x){
   dat <- x$pars

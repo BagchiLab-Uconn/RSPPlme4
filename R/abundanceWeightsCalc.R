@@ -13,14 +13,8 @@
 #'
 #' @return A vector of weights of length r.
 #'
-#' @examples
-#' x <- spatstat.core::rpoint(20)
-#' y <- spatstat.core::rpoint(20)
-#' abundanceWeightsCalc(x, y, r=seq(0, 0.2, 0.05), correction = "border")
 
 #' @family RSPP weight calculations
-#'
-#' @export
 
 abundanceWeightsCalc <- function(pppx, pppy=NULL,
                                    square=FALSE, Acorr = FALSE,

@@ -1,13 +1,13 @@
-#' Refits an klmer Model to the Bootstrapped K Function Data
+#' Refits an klmer model to the Bootstrapped K Function Data
 #'
-#' @param mods Original \code{\link{klmerHyper}} model fitted to observed data.
+#' @param mods Original \code{\link{klmer}} model fitted to observed data.
 #' @param newK Simulated K functions.
 #'
-#' @return A klmerHyper model fitted to the randomised data.
+#' @return A klmer model fitted to the randomised data.
 #'
 #' @export
 #'
-refit.klmerHyper <- function(mods, newK){
+refit.klmer <- function(mods, newK){
   mods <- mapply(function(mod, K_r)
   {
     if(!is.null(mod))
@@ -23,6 +23,6 @@ refit.klmerHyper <- function(mods, newK){
     else
       return(NULL)
   }, mod=mods, K_r = newK, SIMPLIFY=FALSE)
-  class(mods) <- "klmerHyper"
+  class(mods) <- "klmer"
   return(mods)
 }

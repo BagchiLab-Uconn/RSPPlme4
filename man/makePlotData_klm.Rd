@@ -2,7 +2,7 @@
 % Please edit documentation in R/makePlotData_klm.R
 \name{makePlotData_klm}
 \alias{makePlotData_klm}
-\title{Format fixed effect parameters from a klmerHyper object for easy plotting}
+\title{Format fixed effect parameters from a klm object for easy plotting}
 \usage{
 makePlotData_klm(x)
 }
@@ -10,23 +10,23 @@ makePlotData_klm(x)
 \item{x}{A \code{\link{klm}} object.}
 }
 \value{
-a \code{\link[tibble]{tibble}} of fixed effects against distance.
+a \code{\link[tibble]{tibble}} of coefficients against distance.
 }
 \description{
-Format fixed effect parameters from a klmerHyper object for easy plotting
+Format fixed effect parameters from a klm object for easy plotting
 }
 \seealso{
 Other RSPP plot functions: 
 \code{\link{autoplot.klmci}()},
-\code{\link{autoplot.klmerHyper}()},
 \code{\link{autoplot.klmerci}()},
+\code{\link{autoplot.klmer}()},
 \code{\link{autoplot.klm}()},
 \code{\link{makePlotData_klmci}()},
-\code{\link{makePlotData_klmerHyper}()},
 \code{\link{makePlotData_klmerci}()},
+\code{\link{makePlotData_klmer}()},
 \code{\link{plot.klmci}()},
-\code{\link{plot.klmerHyper}()},
 \code{\link{plot.klmerci}()},
+\code{\link{plot.klmer}()},
 \code{\link{plot.klm}()}
 }
 \concept{RSPP plot functions}

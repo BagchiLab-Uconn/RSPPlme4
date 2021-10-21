@@ -1,7 +1,7 @@
 
 #' Print a klmerAnova Object
 #'
-#' @param x An object of class \code{\link{anova.klmerHyper}}
+#' @param x An object returned by \code{\link{anova.klmer}}
 #' @param stat Statistic to print. Options are T (default) or D.
 #' @param ... Additional arguments, currently ignored.
 #'

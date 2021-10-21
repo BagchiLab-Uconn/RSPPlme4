@@ -1,6 +1,6 @@
-#' Format fixed effect parameters from a klmerHyper object for easy plotting
+#' Format fixed effect parameters from a klmer object for easy plotting
 
-#' @param x A \code{\link{klmerHyper}} object.
+#' @param x A \code{\link{klmer}} object.
 
 #' @return a \code{\link[tibble]{tibble}} of fixed effects against distance.
 
@@ -11,7 +11,7 @@
 #' @importFrom rlang .data
 #' @export
 
-makePlotData_klmerHyper <- function(x)
+makePlotData_klmer <- function(x)
 {
   tibble::as_tibble(
     do.call('rbind', lapply(x, fixef))

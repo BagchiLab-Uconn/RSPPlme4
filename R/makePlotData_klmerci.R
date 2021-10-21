@@ -1,7 +1,7 @@
 #' Format a klmerci object for plotting of parameters and confidence intervals
 #' from a bootstrap
 
-#' @param x A klmerci object from \code{\link{confint.klmerHyper}}
+#' @param x A klmerci object from \code{\link{confint.klmer}}
 
 #' @return a \code{\link[tibble]{tibble}} of fixed effects against distance.
 

@@ -1,6 +1,5 @@
 
-#' Plot a klmerHyper object. Plots parameter
-#' estimates distance
+#' Plot a klm object. Plots parameter estimates against distance
 
 #' @param x A \code{\link{klm}} object.
 #' @param ... additional arguments (currently unused).

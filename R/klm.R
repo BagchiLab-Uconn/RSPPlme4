@@ -1,5 +1,5 @@
-#' Fits klmer at specified distances from a hyperframe with kfunctions and covariates.
-#' @import lme4 spatstat stats
+#' Fits klm at specified distances from a hyperframe with kfunctions and covariates.
+#' @import spatstat stats
 #'
 #' @param formula Model formula following \code{\link[stats]{lm}} syntax, with
 #' left hand side a k-function object.
@@ -13,7 +13,7 @@
 #' @param na.action How to deal with missing data.
 #' @param printwarnings Print warnings about distances with no variance?
 #'
-#' @return Model output of class klmerHyper
+#' @return Model output of class klm
 #' @export
 #'
 #'

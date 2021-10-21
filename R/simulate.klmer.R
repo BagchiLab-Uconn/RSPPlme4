@@ -1,5 +1,5 @@
 
-#' Semi-Parametric Bootstrap sample form a klmerHyper object.
+#' Semi-Parametric Bootstrap sample form a klmer object.
 #'
 #' @param object Models to be simulated from.
 #' @param resids The residuals to be resampled.
@@ -7,11 +7,11 @@
 #' @param seed Seed for simulations (currently ignored)
 #' @param ... Additional parameters for simulate method.
 #'
-#' @return A list of simulated Kfunctions for all distances in klmerHyper
+#' @return A list of simulated Kfunctions for all distances in klmer object
 #' object.
 #' @export
 
-simulate.klmerHyper <- function(object,  nsim=1, seed=NULL, resids, ...)
+simulate.klmer <- function(object,  nsim=1, seed=NULL, resids, ...)
 {
   mods <- object
 

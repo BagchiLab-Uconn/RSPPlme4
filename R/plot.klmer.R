@@ -1,8 +1,8 @@
 
-#' Plot a klmerHyper object. Plots parameter
+#' Plot a klmer object. Plots parameter
 #' estimates distance
 
-#' @param x A \code{\link{klmerHyper}} object.
+#' @param x A \code{\link{klmer}} object.
 #' @param ... additional arguments (currently unused).
 #' 
 #' @return a ggplot object
@@ -14,8 +14,8 @@
 #' @importFrom rlang .data
 #' @export
 
-plot.klmerHyper <- function(x, ...){
- print(autoplot.klmerHyper(x, ...))
+plot.klmer <- function(x, ...){
+ print(autoplot.klmer(x, ...))
 }
 
  

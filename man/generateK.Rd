@@ -7,7 +7,7 @@
 generateK(mod, resids)
 }
 \arguments{
-\item{mod}{A \code{\link{klmer}} model.}
+\item{mod}{A \code{\link{klmer_i}} model.}
 
 \item{resids}{The sampled residuals and random effects.}
 }

@@ -37,11 +37,6 @@ A vector of weights of length r.
 A function to calculate the weights based on the abundance
 of points only.
 }
-\examples{
-x <- spatstat.core::rpoint(20)
-y <- spatstat.core::rpoint(20)
-abundanceWeightsCalc(x, y, r=seq(0, 0.2, 0.05), correction = "border")
-}
 \seealso{
 Other RSPP weight calculations: 
 \code{\link{kfuncWeightsCalc}()},

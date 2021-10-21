@@ -20,15 +20,15 @@ from a bootstrap
 \seealso{
 Other RSPP plot functions: 
 \code{\link{autoplot.klmci}()},
-\code{\link{autoplot.klmerHyper}()},
 \code{\link{autoplot.klmerci}()},
+\code{\link{autoplot.klmer}()},
 \code{\link{autoplot.klm}()},
-\code{\link{makePlotData_klmerHyper}()},
 \code{\link{makePlotData_klmerci}()},
+\code{\link{makePlotData_klmer}()},
 \code{\link{makePlotData_klm}()},
 \code{\link{plot.klmci}()},
-\code{\link{plot.klmerHyper}()},
 \code{\link{plot.klmerci}()},
+\code{\link{plot.klmer}()},
 \code{\link{plot.klm}()}
 }
 \concept{RSPP plot functions}

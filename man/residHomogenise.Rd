@@ -7,7 +7,7 @@
 residHomogenise(mods)
 }
 \arguments{
-\item{mods}{klmerHyper model}
+\item{mods}{klmer model}
 }
 \value{
 List of residuals and random effects that are exchangable.

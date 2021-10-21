@@ -10,7 +10,6 @@
 #'
 #' @importFrom ggplot2 ggplot aes geom_line geom_ribbon geom_hline facet_wrap
 #' @importFrom rlang .data
-#' @export
 
 autoplot.klmci <- function(x, ...){
   

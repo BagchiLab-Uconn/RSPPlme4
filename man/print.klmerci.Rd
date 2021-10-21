@@ -7,7 +7,7 @@
 \method{print}{klmerci}(x, type = "pars", ...)
 }
 \arguments{
-\item{x}{A klmerHyper object.}
+\item{x}{A klmer object.}
 
 \item{type}{Print parameters, (pars, the default), or predictions (predictions)}
 

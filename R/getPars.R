@@ -6,8 +6,6 @@
 #'
 #' @return A list with predictions, their standard errors, fixed effects and
 #' the variance covariance matrix.
-#' @export
-#'
 
 getPars <- function(mod, lin_comb) {
   if(!is.null(mod)){

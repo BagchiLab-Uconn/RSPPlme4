@@ -2,7 +2,7 @@
 #' Plot a klmerci object  with parameters and confidence intervals
 #' from a bootstrap
 
-#' @param x  A klmerci object from \code{\link{confint.klmerHyper}}.
+#' @param x  A klmerci object from \code{\link{confint.klmer}}.
 #' @param ... additional arguments (currently unused).
 #' 
 #' @return a ggplot object

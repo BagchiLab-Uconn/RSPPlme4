@@ -1,8 +1,8 @@
-#' Format fixed effect parameters from a klmerHyper object for easy plotting
+#' Format fixed effect parameters from a klm object for easy plotting
 
 #' @param x A \code{\link{klm}} object.
 
-#' @return a \code{\link[tibble]{tibble}} of fixed effects against distance.
+#' @return a \code{\link[tibble]{tibble}} of coefficients against distance.
 
 #' @family RSPP plot functions
 #'

@@ -1,11 +1,10 @@
 #' Generate Bootstrap Sample of K functions from models and resampled residuals.
 #'
-#' @param mod A \code{\link{klmer}} model.
+#' @param mod A \code{\link{klmer_i}} model.
 #' @param resids The sampled residuals and random effects.
 #'
 #' @return A K function.
-#' @export
-#'
+
 
 generateK <- function(mod, resids){
 

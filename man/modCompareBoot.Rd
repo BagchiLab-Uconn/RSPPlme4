@@ -7,9 +7,9 @@
 modCompareBoot(modsH1, modsH0, resids, maxit)
 }
 \arguments{
-\item{modsH1}{The full model of class \code{\link{klmerHyper}}}
+\item{modsH1}{The full model of class \code{\link{klmer}}}
 
-\item{modsH0}{The null model of class \code{\link{klmerHyper}}}
+\item{modsH0}{The null model of class \code{\link{klmer}}}
 
 \item{resids}{Exchangeable residuals from modsH1}
 

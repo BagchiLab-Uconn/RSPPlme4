@@ -4,12 +4,12 @@
 #'
 #' @param mods model to be converted
 #'
-#' @return A klmerHyper object with models fitted via ML
+#' @return A klmer object with models fitted via ML
 #'
 #' @export
 #'
 
-refitMLklmerHyper <- function(mods)
+refitMLklmer <- function(mods)
 {
   mods <- lapply(mods, function(mod) {
     if (!is.null(mod)) {
@@ -23,6 +23,6 @@ refitMLklmerHyper <- function(mods)
     else mod <- NULL
     return(mod)
   })
-  class(mods) <- 'klmerHyper'
+  class(mods) <- 'klmer'
   return(mods)
 }

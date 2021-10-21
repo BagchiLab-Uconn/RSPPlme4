@@ -2,7 +2,7 @@
 #' Bootstrap on klmer models to obtain confidence intervals.
 #' @import parallel
 
-#' @param mods A \code{\link{klmerHyper}} object.
+#' @param mods A \code{\link{klmer}} object.
 #' @param lin_comb Linear combintaion of the fixed parameters
 #' @param nboot Number of bootstrap simulations.
 #' @param maxit Number of attempts to try fitting a bootstrap iteration before
@@ -15,7 +15,7 @@
 #' fixed effects and variance covariance matrix for all distances.
 #' @export
 
-bootstrap.klmerHyper <- function(mods, lin_comb, nboot, maxit =10,
+bootstrap.klmer <- function(mods, lin_comb, nboot, maxit =10,
                                    ncore=1, cltype='PSOCK', iseed=NULL)
 {
 
@@ -47,7 +47,7 @@ bootstrap.klmerHyper <- function(mods, lin_comb, nboot, maxit =10,
         ## Simulate new K function.
         K_r <- simulate(mods, resids=resids)
         ## refit the models
-        mods_r <- refit.klmerHyper(mods=mods, newK=K_r)
+        mods_r <- refit.klmer(mods=mods, newK=K_r)
 
         ## If any errors repeat iteration, until maxit iterations (then give up)
 

@@ -3,7 +3,7 @@
 #'
 #' @param resids_e = Homogenised level 1 residuals from
 #' \code{\link{residHomogenise}}.
-#' @param mods klmer models.
+#' @param mods klmer model.
 #'
 #' @return A list of randomised level 1 residuals.
 #' @export

@@ -2,7 +2,7 @@
 % Please edit documentation in R/klm.R
 \name{klm}
 \alias{klm}
-\title{Fits klmer at specified distances from a hyperframe with kfunctions and covariates.}
+\title{Fits klm at specified distances from a hyperframe with kfunctions and covariates.}
 \usage{
 klm(
   formula,
@@ -36,8 +36,8 @@ Not currently used.}
 \item{printwarnings}{Print warnings about distances with no variance?}
 }
 \value{
-Model output of class klmerHyper
+Model output of class klm
 }
 \description{
-Fits klmer at specified distances from a hyperframe with kfunctions and covariates.
+Fits klm at specified distances from a hyperframe with kfunctions and covariates.
 }

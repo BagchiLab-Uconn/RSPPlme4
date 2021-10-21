@@ -4,8 +4,6 @@
 #' @param ranefs A list of random effects corresponding to mods.
 #'
 #' @return A list of resampled random effects.
-#' @export
-#'
 
 ranefRandomise <- function(mods, ranefs)
   {

@@ -1,6 +1,6 @@
 #' Compare Models with and without a Parameter of Interest.
 #'
-#' @param object An object of class \code{\link{klmerHyper}}
+#' @param object An object of class \code{\link{klmer}}
 #' @param term The parameter of interest.
 #' @param dists Distances at which to test the effect of term. Can be a list with
 #' several distance ranges specified.
@@ -17,7 +17,7 @@
 #' @export
 #'
 
-anova.klmerHyper <- function (object, term, dists, nboot,  maxit=50,
+anova.klmer <- function (object, term, dists, nboot,  maxit=50,
                      ncore=1, cltype='PSOCK', iseed=NULL, ...)
 {
     ## manage distances if several ranges are to be tested
@@ -37,7 +37,7 @@ anova.klmerHyper <- function (object, term, dists, nboot,  maxit=50,
   object <- object[as.character(dists)]
   attributes(object) <- atts
 
-  modsH1 <- refitMLklmerHyper(object)
+  modsH1 <- refitMLklmer(object)
   modsH0 <- update(modsH1, term=term)
 
   ## remove models that didn't converge
