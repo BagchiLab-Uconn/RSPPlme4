@@ -14,10 +14,13 @@
 
 makePlotData_klmerci <- function(x){
   dat <- x$pars_fixed
-  dimnames(dat)[[3]][1] <- "Intercept"
-  dat <- as.data.frame.table(dat) %>% 
-    tidyr::pivot_wider(names_from=.data$Var1, values_from=.data$Freq) %>%
-    dplyr::rename("distance" = "Var2", "term"="Var3", 
-                  "lcl" = "2.5%", "ucl" = "97.5%") %>%
+  dimnames(dat)[[1]][1] <- "Intercept"
+  as.data.frame.table(dat) %>% 
+    tidyr::pivot_wider(names_from=.data$Var3, values_from=.data$Freq) %>%
+    dplyr::rename(
+      "distance" = "Var2", 
+      "term"="Var1", 
+      "lcl" = "lower", 
+      "ucl" = "upper") %>%
   dplyr::mutate(distance = as.numeric(as.character(.data$distance)))
 }

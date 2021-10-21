@@ -30,7 +30,7 @@ confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, is
   
   
   ## repeats the bootstrap from lm.boot nboot times
-  bsci <- replicate(nboot, bootstrap.klm(object, lin_comb=lin_comb), simplify=FALSE)
+  bootobj <- replicate(nboot, bootstrap.klm(object, lin_comb=lin_comb), simplify=FALSE)
   
   ## extracts the observed k-function and standard error
   mod_pars <- lapply(object, function(x)
@@ -52,13 +52,19 @@ confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, is
   ## to get a "t-distribution" that is then multiplied by the observed
   ## standard error and added to the fitted values.
   
-  t_pars <- sapply(bsci, function(sim, est){
-    
-    do.call("cbind", mapply(function(sim, est) {
-      t_r <- (sim$pars - est$pars)/(sim$se_pars)
-      return(t_r)
-    },  sim=sim, est=est, SIMPLIFY=FALSE))
-  },est=mod_pars, simplify=FALSE)
+  
+  t_pars <- sapply(bootobj, function(sim, est) {
+    do.call("cbind",
+            mapply(
+              function(sim, est) {
+                t_r <- (sim$pars - est$pars) / (sim$se_pars)
+                return(t_r)
+              },
+              sim = sim,
+              est = est,
+              SIMPLIFY = FALSE
+            ))
+  }, est = mod_pars, simplify = FALSE)
 
   t_pars <- do.call(abind::"abind", args=list(t_pars, along=3))
 
@@ -83,7 +89,7 @@ confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, is
     upper = ucl_pars, 
     along = 3)
 
-  t_pred <- lapply(bsci, function(sim, obs){
+  t_pred <- lapply(bootobj, function(sim, obs){
     do.call('cbind',  mapply(function(obs.t, sim.t){
       t.score.t <- (sim.t$pred - obs.t$pred)/sim.t$se_pred
       return(t.score.t)}, obs.t= obs, sim.t=sim, SIMPLIFY=F))}, obs=exp_pred)
@@ -109,7 +115,7 @@ confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, is
 
 
   attr(ci_boot, "level") <- level
-  attr(ci_boot, "bootobj") <- bsci
+  attr(ci_boot, "bootobj") <- bootobj
   attr(ci_boot, "model") <- object
   class(ci_boot) <- "klmci"
   return(ci_boot)
