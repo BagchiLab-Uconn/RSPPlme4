@@ -17,10 +17,13 @@
 #' @export
 #'
 
-anova.klmer <- function (object, term, dists, nboot,  maxit=50,
+anova.klmer <- function (object, term = NULL, dists, nboot,  maxit=50,
                      ncore=1, cltype='PSOCK', iseed=NULL, ...)
 {
-    ## manage distances if several ranges are to be tested
+  if(is.null(term))
+    stop("No term defined")
+
+  ## manage distances if several ranges are to be tested
   testdists <-  dists
   if(class(testdists) !='list')
     testdists <- list(testdists)
