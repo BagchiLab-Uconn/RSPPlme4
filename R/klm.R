@@ -66,13 +66,15 @@ klm <- function(formula, hyper, weights = NULL, weights_type = NULL,
       hyper[, "weights"] <- lapply(hyper[, deparse(substitute(ppx)), drop = TRUE],
                                    kfuncWeightsCalc,
                                    r = r,
-                                   type = weights_type)
+                                   type = weights_type, 
+                                   correction = correction)
     else
       if("ppp" %in% lhs_class)
         hyper[, "weights"] <- lapply(hyper[, lhs, drop = TRUE],
                                      kfuncWeightsCalc,
                                      r = r,
-                                     type = weights_type)
+                                     type = weights_type, 
+                                     correction = correction)
   }
   
   else
