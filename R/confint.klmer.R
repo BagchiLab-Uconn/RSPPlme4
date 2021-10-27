@@ -27,6 +27,9 @@ confint.klmer <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootob
       stop(paste("Must define nboot if no bootobj passed to confint.",
                  "\nConsider defining parameters for parallel processing:
                  ncore and cltype.\n"))
+    else
+      if(nboot < 1/(1 - level))
+        warning(paste(nboot, "samples is unlikely sufficient for", 100*level, "% confidence intervals"))
     
     # get model matrix from model if no custom matrix supplied
     if(is.null(lin_comb))

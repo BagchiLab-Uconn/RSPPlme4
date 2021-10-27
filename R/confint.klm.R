@@ -16,6 +16,9 @@
 
 confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, iseed = NULL, ...){
   
+  if(nboot < 1/(1 - level))
+    warning(paste(nboot, "samples is unlikely sufficient for", 100*level, "% confidence intervals"))
+  
   alpha <-  1 - level ## simplify calculations by taking 1 - alpha.
   
   if(!is.null(iseed))
