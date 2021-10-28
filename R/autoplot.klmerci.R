@@ -14,8 +14,8 @@
 
 autoplot.klmerci <- function(x, ...){
   pl <- ggplot2::ggplot(makePlotData_klmerci(x), 
-                        ggplot2::aes(x=.data$distance, y=.data$estimate, 
-                            ymin=.data$lcl, ymax=.data$ucl)) +
+                        ggplot2::aes(x=.data$distance, y=.data$est, 
+                            ymin=.data$lwr, ymax=.data$upr)) +
   ggplot2::geom_ribbon(colour=NA, alpha=0.3) + 
   ggplot2::geom_line() +
   ggplot2::geom_hline(yintercept=0, linetype='dotted') + 

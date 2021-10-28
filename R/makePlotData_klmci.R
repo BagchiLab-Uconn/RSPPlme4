@@ -18,10 +18,9 @@ makePlotData_klmci <- function(x){
   dat <- tidyr::pivot_wider(dat, names_from=.data$Var3, values_from=.data$Freq)
   dat <- dplyr::rename(dat, 
                        "distance" = "Var2", 
-                       "term"="Var1", 
-                       "lcl" = "lower", 
-                       "ucl" = "upper")
-    dat <-  dplyr::mutate(dat, distance = 
-                            as.numeric(as.character(.data$distance)))
-    return(dat)
+                       "term"="Var1")
+  
+  dat <-  dplyr::mutate(dat, 
+                        distance = as.numeric(as.character(.data$distance)))
+  return(dat)
 }

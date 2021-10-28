@@ -17,7 +17,7 @@ print.klmerci <- function(x, type="pars", ...)
       100 * c(alpha/2,    1 - alpha/2),  "%"
     )
   
-  dimnames(x$preds)[[3]][2:3] <- 
+  dimnames(x$predictions)[[3]][2:3] <- 
     paste0(
       dimnames(x$pars)[[3]][2:3], 
       100 * c(alpha/2,    1 - alpha/2),  "%"

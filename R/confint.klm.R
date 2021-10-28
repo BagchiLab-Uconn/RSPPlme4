@@ -100,7 +100,7 @@ confint.klm <- function(object, parm, level = 0.95,
   est_pars <- do.call("cbind", lapply(mod_pars, function(x) x$pars))
   
   est_pars <- abind::abind(
-    estimate = est_pars, 
+    est = est_pars, 
     lwr = lcl_pars, 
     upr = ucl_pars, 
     along = 3)
