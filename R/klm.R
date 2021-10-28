@@ -13,15 +13,18 @@
 #' @param ppx A set of \code{\link[spatstat.geom]{ppp}} objects to use in calculating weights
 #' @param minsamp Minimum number of points to include point pattern in model.
 #' Not currently used.
+#' @param remove_zero_weights Whether to remove point patterns with no focal points after 
+#' edge corrections. If TRUE (the defaults) removes such rows with a warning.
 #' @param na.action How to deal with missing data.
 #' @param printwarnings Print warnings about distances with no variance?
-#'
 #' @return Model output of class klm
 #' @export
 
 klm <- function(formula, hyper, weights = NULL, weights_type = NULL, 
                 r, correction, ppx = NULL,
-                minsamp=NA, na.action="na.omit", printwarnings=TRUE)
+                minsamp=NA, remove_zero_weights = TRUE,
+                na.action="na.omit", printwarnings=TRUE 
+                )
 {
 
   mc <- match.call()
@@ -85,10 +88,18 @@ klm <- function(formula, hyper, weights = NULL, weights_type = NULL,
   
   zero_wts <- sapply(hyper$weights, function(x) any(x == 0))
   if(any(zero_wts))
-    stop(paste("Rows ", 
-               paste(which(zero_wts), collapse = ", "), 
-               " have zero weights")
+    if(!remove_zero_weights)
+      stop(paste("Rows ", 
+                 paste(which(zero_wts), collapse = ", "), 
+                 "have zero weights")
          )
+  else
+  {
+    hyper <- hyper[-which(zero_wts),]
+    warning(paste("Removed rows ", 
+                  paste(which(zero_wts), collapse = ", "), 
+                  "which have zero weights"))
+  }
   
   ## Do not model distances where the variance is 0
   dist.keep <-  (apply(sapply(hyper$k, function(K) K[[correction]][K$r %in% r]), 1,
@@ -123,5 +134,6 @@ klm <- function(formula, hyper, weights = NULL, weights_type = NULL,
 
   class(kmods) <- 'klm'
   attr(kmods, "call") <- mc
+  attr(kmods, "removed_rows") <- which(zero_wts)
   return(kmods)
 }

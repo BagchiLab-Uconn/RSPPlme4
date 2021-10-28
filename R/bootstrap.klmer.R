@@ -15,12 +15,10 @@
 #' fixed effects and variance covariance matrix for all distances.
 #' @export
 
-bootstrap.klmer <- function(mods, lin_comb, nboot = 1, maxit =10,
+bootstrap.klmer <- function(mods, lin_comb, nboot, maxit =10,
                                    ncore=1, cltype='PSOCK', iseed=NULL)
 {
 
-  if(nboot < 1/(1 - level))
-    warning(paste(nboot, "samples is unlikely sufficient for", 100*level, "% confidence intervals"))
   ## Make the residuals and BLUPs exchangable.
   resids <- residHomogenise(mods)
 
