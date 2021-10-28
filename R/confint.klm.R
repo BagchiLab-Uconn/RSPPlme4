@@ -5,7 +5,9 @@
 #' @param parm Parameter to get confidence interval for. Currently ignored.
 #' @param level Desired confidence intervals.
 #' @param nboot Number of bootstrap simulations.
-#' @param lin_comb Linear combination of the fixed parameters. Defaulats
+#' @param newdata New data to make predictions on. Defaults to NULL whereupon 
+#' fitted values are returned.
+#' @param lin_comb Linear combination of the fixed parameters. Defaults
 #' to NULL to extract it from the fitted model.
 #' @param iseed Random number seed.
 #' @param ... Additional arguments, currently ignored.
@@ -15,7 +17,8 @@
 #' @export
 
 confint.klm <- function(object, parm, level = 0.95, 
-                        lin_comb = NULL, nboot=1, iseed = NULL, ...){
+                        newdata = NULL, lin_comb = NULL, 
+                        nboot=1, iseed = NULL, ...){
   
   if(nboot < 1/(1 - level))
     warning(paste(nboot, "samples is unlikely sufficient for", 100*level, "% confidence intervals"))
@@ -29,9 +32,18 @@ confint.klm <- function(object, parm, level = 0.95,
     set.seed(iseed)
   }
   
-  if(is.null(lin_comb))
-      lin_comb <- object[[1]]$x
+  if(!is.null(newdata) & !is.null(lin_comb))
+    stop("Cannot specify lin_comb and newdata. Choose one")
   
+  if(is.null(lin_comb))
+  {
+    if(is.null(newdata))
+      lin_comb <- object[[1]]$x
+    
+    else  
+      lin_comb <- model.matrix(update(formula(object[[1]]), NULL ~ .), 
+                               data = newdata)
+  }
   
   ## repeats the bootstrap from lm.boot nboot times
   bootobj <- replicate(nboot, bootstrap.klm(object, lin_comb=lin_comb), simplify=FALSE)

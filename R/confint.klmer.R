@@ -4,10 +4,12 @@
 #' @param object A \code{\link{klmer}} object.
 #' @param parm Parameter to get confidence interval for. Currently ignored.
 #' @param level Desired confidence intervals.
+#' @param nboot Number of bootstrap simulations.
+#' @param newdata New data to make predictions on. Defaults to NULL whereupon 
+#' fitted values are returned.
 #' @param lin_comb Linear combination of the fixed parameters
 #' @param bootobj Bootstrap object run outside function. Defaults to NULL so
 #' the bootstrap is run internally.
-#' @param nboot Number of bootstrap simulations.
 #' @param ncore Number of cpus to use.
 #' @param cltype Type of cluster to use.
 #' @param iseed Random number seed.
@@ -16,8 +18,9 @@
 #' @return Returns the confidence intervals on an klmer object.
 #' @export
 #'
-confint.klmer <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootobj=NULL,
-                               nboot=NULL, ncore=1, cltype="PSOCK", iseed=NULL, ...)
+confint.klmer <- function(object, parm = NULL, level=0.95, nboot=NULL,
+                          newdata = NULL, lin_comb=NULL, bootobj=NULL,
+                               ncore=1, cltype="PSOCK", iseed=NULL, ...)
   {
 
   ## If bootstraps haven't been run yet, run now.
@@ -32,13 +35,29 @@ confint.klmer <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootob
         warning(paste(nboot, "samples is unlikely sufficient for", 100*level, "% confidence intervals"))
     
     # get model matrix from model if no custom matrix supplied
+    
     if(is.null(lin_comb))
-      lin_comb <- lme4::getME(object[[1]], "X")
       
-    bootobj <- bootstrap.klmer(object,lin_comb=lin_comb, nboot=nboot,
+      if(is.null(newdata))
+        lin_comb <- lme4::getME(object[[1]], "X")
+    else  
+      lin_c <- <- omb <- model.matrix(update(formula(object[[1]]), NULL ~ .), 
+                               data = newdata)
+  }
+      
+    bootobj <- bootstrap.klmer(object,
+                               lin_comb=lin_comb, nboot=nboot,
                                          ncore=ncore, cltype=cltype, iseed=iseed)
 
   }
+  
+  
+  
+  if(is.null(lin_comb))
+  {
+    
+    
+  
 
   lin_comb <- attr(bootobj,  "linear.combination")
 
