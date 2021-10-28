@@ -14,7 +14,8 @@
 #' @return Returns the confidence intervals on an klm object.
 #' @export
 
-confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, iseed = NULL, ...){
+confint.klm <- function(object, parm, level = 0.95, 
+                        lin_comb = NULL, nboot=1, iseed = NULL, ...){
   
   if(nboot < 1/(1 - level))
     warning(paste(nboot, "samples is unlikely sufficient for", 100*level, "% confidence intervals"))
@@ -88,8 +89,8 @@ confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, is
   
   est_pars <- abind::abind(
     estimate = est_pars, 
-    lower = lcl_pars, 
-    upper = ucl_pars, 
+    lwr = lcl_pars, 
+    upr = ucl_pars, 
     along = 3)
 
   t_pred <- lapply(bootobj, function(sim, obs){
@@ -110,9 +111,10 @@ confint.klm <- function(object, parm, level = 0.95, lin_comb = NULL, nboot=1, is
     sapply(exp_pred, function(x) x$pred) - 
     t_ci_pred[1 , ,] * sapply(exp_pred, function(x) x$se_pred)
 
-  preds <- abind::abind(est_pred = sapply(exp_pred, function(x) x$pred),
-                        ucl_pred = ucl_pred,
-                        lcl_pred = lcl_pred, along=3)
+  preds <- abind::abind(
+    est = sapply(exp_pred, function(x) x$pred),
+    lwr = lcl_pred,
+    upr = ucl_pred, along=3)
   
   ci_boot <- list(predictions = preds, pars = est_pars) 
 

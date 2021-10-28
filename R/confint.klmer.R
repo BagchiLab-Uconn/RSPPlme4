@@ -70,9 +70,9 @@ confint.klmer <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootob
   est_fixed <- do.call("cbind", lapply(mod_pars, function(x) x$beta_r))
   
   pars_fixed <- abind::abind(
-    "estimate" = est_fixed,
-    "lower"  = t(cis_fixed[1, , ]),
-    "upper" = t(cis_fixed[2 , , ]), 
+    "est" = est_fixed,
+    "lwr"  = t(cis_fixed[1, , ]),
+    "upr" = t(cis_fixed[2 , , ]), 
     along = 3
     )
     
@@ -104,8 +104,9 @@ confint.klmer <- function(object, parm = NULL, level=0.95, lin_comb=NULL, bootob
   ucl_pred <- est_pred - uci_pred*se_pred
   lcl_pred <- est_pred - lci_pred*se_pred
 
-  preds <- abind::abind(est=est_pred, ucl_pred=ucl_pred,
-                        lcl_pred=lcl_pred, along=3)
+  preds <- abind::abind(est = est_pred, 
+                        upr = ucl_pred,
+                        lwr = lcl_pred, along=3)
   ## organise into return object
   ci_boot <- list(predictions = preds, pars_fixed=pars_fixed)
   attr(ci_boot, "level") <- level
