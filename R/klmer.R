@@ -101,8 +101,8 @@ klmer <- function(formula, hyper, weights = NULL,  weights_type = NULL,
   }
 
       ## Do not model distances where the variance is 0
-  dist.keep <-  (apply(sapply(hyper$k, function(K) K[[correction]][K$r %in% r]), 1,
-                       function(x) var(x)) > 0 | is.na(var(x)))
+  dist.keep <-  apply(sapply(hyper$k, function(K) K[[correction]][K$r %in% r]), 1,
+                       function(x) !(var(x) == 0 | is.na(var(x))))
   if(printwarnings)
     if(any(!dist.keep[r!=0]))
       warning(paste('Not modelling K at distances ',

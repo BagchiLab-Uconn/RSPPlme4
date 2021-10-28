@@ -41,7 +41,7 @@ confint.klmer <- function(object, parm = NULL, level=0.95, nboot=NULL,
       if(is.null(newdata))
         lin_comb <- lme4::getME(object[[1]], "X")
     else  
-      lin_c <- <- omb <- model.matrix(update(formula(object[[1]]), NULL ~ .), 
+      lin_c <- model.matrix(update(formula(object[[1]]), NULL ~ .), 
                                data = newdata)
   }
       
