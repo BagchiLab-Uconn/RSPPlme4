@@ -17,6 +17,16 @@
 #' @param ... Additional arguments, currently ignored.
 #'
 #' @return Returns the confidence intervals on an klmer object.
+#'
+#' @description The function uses a semi-parameteric bootstrapping approach 
+#' to compute confidence intervals on parameter estimates and predictions from 
+#' based on a klmer model object. 
+#' 
+#' Currently, random effects are ignored in the computations of predcitions -
+#' i.e. predictions are made for an "average" group but assuming that any
+#' group effects are known (i.e., no uncertainty is added from not knowing
+#' which group the prediction is for). 
+#' 
 #' @export
 #'
 confint.klmer <-
@@ -62,7 +72,8 @@ confint.klmer <-
             lin_comb <- lme4::getME(object[[1]], "X")
         else
           lin_comb <-
-            model.matrix(update(formula(object[[1]]), NULL ~ .),
+            model.matrix(update(formula(object[[1]], fixed.only = TRUE), 
+                                NULL ~ .),
                          data = newdata)
         
         bootobj <- bootstrap.klmer(
@@ -121,10 +132,7 @@ confint.klmer <-
       along = 3
     )
     
-    #est_fixed <- aperm(sapply(mod_pars, function(x) x$beta_r), c(2,1))
-    #est_fixed <- array(est_fixed, dim=c(1, dim(est_fixed)))
-    
-    #pars_fixed  <- abind::abind(list('estimate'=est_fixed, cis_fixed), along=1)
+   
     
     ##construct the 't-distributions' for the predictions
     t_pred <- lapply(bootobj, function(sim, obs)
