@@ -8,9 +8,10 @@
   object,
   parm = NULL,
   level = 0.95,
+  nboot = NULL,
+  newdata = NULL,
   lin_comb = NULL,
   bootobj = NULL,
-  nboot = NULL,
   ncore = 1,
   cltype = "PSOCK",
   iseed = NULL,
@@ -24,12 +25,15 @@
 
 \item{level}{Desired confidence intervals.}
 
+\item{nboot}{Number of bootstrap simulations.}
+
+\item{newdata}{New data to make predictions on. Defaults to NULL whereupon
+fitted values are returned.}
+
 \item{lin_comb}{Linear combination of the fixed parameters}
 
 \item{bootobj}{Bootstrap object run outside function. Defaults to NULL so
 the bootstrap is run internally.}
-
-\item{nboot}{Number of bootstrap simulations.}
 
 \item{ncore}{Number of cpus to use.}
 
@@ -43,5 +47,12 @@ the bootstrap is run internally.}
 Returns the confidence intervals on an klmer object.
 }
 \description{
-Calculate Bootstrap Confidence Intervals on a klmer object.
+The function uses a semi-parameteric bootstrapping approach 
+to compute confidence intervals on parameter estimates and predictions from 
+based on a klmer model object. 
+
+Currently, random effects are ignored in the computations of predcitions -
+i.e. predictions are made for an "average" group but assuming that any
+group effects are known (i.e., no uncertainty is added from not knowing
+which group the prediction is for).
 }

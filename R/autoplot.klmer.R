@@ -9,7 +9,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes geom_line facet_wrap
 #' @importFrom rlang .data
-
+#' @export
 
 autoplot.klmer <- function(x, ...){
   pl <- ggplot2::ggplot(makePlotData_klmer(x)) +

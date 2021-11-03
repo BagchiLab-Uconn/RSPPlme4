@@ -13,6 +13,7 @@ klmer(
   correction,
   ppx = NULL,
   minsamp = NA,
+  remove_zero_weights = TRUE,
   na.action = "na.omit",
   printwarnings = TRUE
 )
@@ -27,7 +28,8 @@ grouping factors and covariates}
 
 \item{weights}{name (in quotes) of user defined weights column.}
 
-\item{weights_type}{The type of weights to be used if weights is not defined above. Ignored if weights is defined.}
+\item{weights_type}{The type of weights to be used if weights is not defined above. 
+Must be a type listed in \code{\link{KfuncWeightsCalc}}. Ignored if weights is defined.}
 
 \item{r}{Distances at which to fit model}
 
@@ -37,6 +39,9 @@ grouping factors and covariates}
 
 \item{minsamp}{Minimum number of points to include point pattern in model.
 Not currently used.}
+
+\item{remove_zero_weights}{Whether to remove point patterns with no focal points after 
+edge corrections. If TRUE (the defaults) removes such rows with a warning.}
 
 \item{na.action}{How to deal with missing data.}
 

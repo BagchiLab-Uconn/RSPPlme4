@@ -7,10 +7,13 @@
 klm(
   formula,
   hyper,
-  weights,
+  weights = NULL,
+  weights_type = NULL,
   r,
   correction,
+  ppx = NULL,
   minsamp = NA,
+  remove_zero_weights = TRUE,
   na.action = "na.omit",
   printwarnings = TRUE
 )
@@ -22,14 +25,22 @@ left hand side a k-function object.}
 \item{hyper}{\code{\link[spatstat.geom]{hyperframe}} with  k functions, weights,
 grouping factors and covariates}
 
-\item{weights}{List of weights for each point pattern.}
+\item{weights}{name (in quotes) of user defined weights column.}
+
+\item{weights_type}{The type of weights to be used if weights is not defined above. 
+Must be a type listed in \code{\link{KfuncWeightsCalc}}. Ignored if weights is defined.}
 
 \item{r}{Distances at which to fit model}
 
 \item{correction}{Edge correction. See \code{\link[spatstat.core]{Kest}}.}
 
+\item{ppx}{A set of \code{\link[spatstat.geom]{ppp}} objects to use in calculating weights}
+
 \item{minsamp}{Minimum number of points to include point pattern in model.
 Not currently used.}
+
+\item{remove_zero_weights}{Whether to remove point patterns with no focal points after 
+edge corrections. If TRUE (the defaults) removes such rows with a warning.}
 
 \item{na.action}{How to deal with missing data.}
 

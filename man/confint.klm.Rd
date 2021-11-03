@@ -8,6 +8,7 @@
   object,
   parm,
   level = 0.95,
+  newdata = NULL,
   lin_comb = NULL,
   nboot = 1,
   iseed = NULL,
@@ -21,7 +22,10 @@
 
 \item{level}{Desired confidence intervals.}
 
-\item{lin_comb}{Linear combination of the fixed parameters. Defaulats
+\item{newdata}{New data to make predictions on. Defaults to NULL whereupon 
+fitted values are returned.}
+
+\item{lin_comb}{Linear combination of the fixed parameters. Defaults
 to NULL to extract it from the fitted model.}
 
 \item{nboot}{Number of bootstrap simulations.}

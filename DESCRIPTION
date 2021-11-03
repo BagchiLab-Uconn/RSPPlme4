@@ -17,6 +17,7 @@ Imports:
     magrittr,
     Matrix (>= 1.2-8),
     rlang (> 0.4.0),
+    scales (> 1.0.0),
     spatstat (>= 1.50),
     spatstat.core (>= 2.1),
     spatstat.geom (>= 2.1),
