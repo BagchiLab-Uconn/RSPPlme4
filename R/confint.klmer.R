@@ -171,6 +171,7 @@ confint.klmer <-
       lwr = lcl_pred,
       along = 3
     )
+    preds[preds < 0] <- 0
     ## organise into return object
     ci_boot <- list(predictions = preds, pars_fixed = pars_fixed)
     attr(ci_boot, "level") <- level

@@ -128,6 +128,8 @@ confint.klm <- function(object, parm, level = 0.95,
     lwr = lcl_pred,
     upr = ucl_pred, along=3)
   
+  preds[preds < 0] <- 0
+  
   ci_boot <- list(predictions = preds, pars = est_pars) 
 
 
