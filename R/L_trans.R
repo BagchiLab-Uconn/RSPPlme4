@@ -7,7 +7,7 @@
 
 
 L_trans <- function() {
-  trans_new(
+  scales::trans_new(
     "L",
     trans = function(x) sqrt(x/pi),
     inverse = function(x) pi *x ^ 2,
