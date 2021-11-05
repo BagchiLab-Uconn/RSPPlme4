@@ -14,7 +14,7 @@
 #' @export
 
 plot.klm <- function(x, ...){
- print(autoplot.klm(x, ...))
+ autoplot.klm(x, ...)
 }
 
  
