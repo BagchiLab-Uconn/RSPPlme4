@@ -29,6 +29,12 @@ klm <- function(formula, hyper, weights = NULL, weights_type = NULL,
 
   mc <- match.call()
   
+  ppx <- deparse(substitute(ppx))
+  if(ppx == "NULL") ppx <- NULL ## ugly but works
+  
+  weights <- deparse(substitute(weights))
+  if(weights == "NULL") weights <- NULL ## ugly but works
+  
   if(min(r) > 0)
     r <- c(0, r) ## Kest requires a 0 distance.
   
@@ -81,7 +87,6 @@ klm <- function(formula, hyper, weights = NULL, weights_type = NULL,
   }
   
   else
-    #   #hyper$weights <- hyper[, deparse(substitute(weights)), drop = TRUE]
     hyper$weights <- hyper[, weights, drop = TRUE]
   
   

@@ -6,7 +6,7 @@
 #' a \code{link[spatstat.geom]{ppp}}
 #' @param hyper \code{\link[spatstat.geom]{hyperframe}} with  k functions, weights,
 #'  grouping factors and covariates
-#' @param weights  name (in quotes) of user defined weights column.
+#' @param weights  name of user defined weights column.
 #' @param weights_type The type of weights to be used if weights is not defined above. 
 #' Must be a type listed in \code{\link{KfuncWeightsCalc}}. Ignored if weights is defined.
 #' @param r Distances at which to fit model
@@ -29,6 +29,12 @@ klmer <- function(formula, hyper, weights = NULL,  weights_type = NULL,
 {
   mc <- match.call()
 
+  ppx <- deparse(substitute(ppx))
+  if(ppx == "NULL") ppx <- NULL ## ugly but works
+  
+  weights <- deparse(substitute(weights))
+  if(weights == "NULL") weights <- NULL ## ugly but works
+  
   if(min(r) > 0)
     r <- c(0, r) ## Kest requires a 0 distance.
 
