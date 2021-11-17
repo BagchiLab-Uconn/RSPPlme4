@@ -65,11 +65,13 @@ klmer <- function(formula, hyper, weights = NULL,  weights_type = NULL,
            (3) set a ppp object as the response and provide weights_type")
 
     if(!is.null(ppx))
-      hyper[, "weights"] <- lapply(hyper[, deparse(substitute(ppx)), drop = TRUE],
+    {
+      hyper[, "weights"] <- lapply(hyper[, ppx, drop = TRUE],
                               kfuncWeightsCalc,
                               r = r,
                               type = weights_type, 
                               correction = correction)
+    }
     else
       if("ppp" %in% lhs_class)
         hyper[, "weights"] <- lapply(hyper[, lhs, drop = TRUE],
