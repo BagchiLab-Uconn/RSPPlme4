@@ -38,9 +38,14 @@ klm <- function(formula, hyper, weights = NULL, weights_type = NULL,
   if(min(r) > 0)
     r <- c(0, r) ## Kest requires a 0 distance.
   
+  rhs <- all.vars(update(formula, 0~.))
+  missing <- !(rhs %in% names(hyper))
+  if(any(missing))
+    stop(paste("variable", paste(rhs[missing], collapse=" "), "not found\n"))
+  
   lhs <- all.vars(update(formula, .~0))
   if(!(lhs %in% names(hyper)))
-    stop("Response variable is missing from dataset")
+    stop("Response variable not found\n")
   
   lhs_class <-  class(hyper[,lhs, drop = TRUE][[1]])
   

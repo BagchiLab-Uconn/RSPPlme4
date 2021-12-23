@@ -41,7 +41,7 @@ klmer <- function(formula, hyper, weights = NULL,  weights_type = NULL,
   rhs <- all.vars(update(formula, 0~.))
   missing <- !(rhs %in% names(hyper))
   if(any(missing))
-    stop(paste("variable", rhs[missing], "not found\n"))
+    stop(paste("variable", paste(rhs[missing], collapse=" "), "not found\n"))
          
   lhs <- all.vars(update(formula, .~0))
   if(!(lhs %in% names(hyper)))
