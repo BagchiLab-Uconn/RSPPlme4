@@ -8,7 +8,7 @@
 #'  grouping factors and covariates
 #' @param weights  name of user defined weights column.
 #' @param weights_type The type of weights to be used if weights is not defined above. 
-#' Must be a type listed in \code{\link{KfuncWeightsCalc}}. Ignored if weights is defined.
+#' Must be a type listed in \code{\link[RSPPlme4]{kfuncWeightsCalc}}. Ignored if weights is defined.
 #' @param r Distances at which to fit model
 #' @param correction Edge correction. See \code{\link[spatstat.core]{Kest}}.
 #' @param ppx A set of \code{\link[spatstat.geom]{ppp}} objects to use in calculating weights
