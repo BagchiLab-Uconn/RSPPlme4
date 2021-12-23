@@ -5,7 +5,7 @@
 #' left hand side a k-function object.
 #' @param hyper \code{\link[spatstat.geom]{hyperframe}} with  k functions, weights,
 #'  grouping factors and covariates
-#' @param weights  name (in quotes) of user defined weights column.
+#' @param weights  name of user defined weights column.
 #' @param weights_type The type of weights to be used if weights is not defined above. 
 #' Must be a type listed in \code{\link{KfuncWeightsCalc}}. Ignored if weights is defined.
 #' @param r Distances at which to fit model
