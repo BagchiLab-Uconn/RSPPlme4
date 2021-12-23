@@ -45,7 +45,7 @@ klmer <- function(formula, hyper, weights = NULL,  weights_type = NULL,
          
   lhs <- all.vars(update(formula, .~0))
   if(!(lhs %in% names(hyper)))
-    stop(paste("Response variable", lhs,  "not found\n")
+    stop(paste("Response variable", lhs,  "not found\n"))
   
   lhs_class <-  class(hyper[,lhs, drop = TRUE][[1]])
   
