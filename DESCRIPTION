@@ -19,7 +19,7 @@ Imports:
     rlang (> 0.4.0),
     scales (> 1.0.0),
     spatstat (>= 1.50),
-    spatstat.core (>= 2.1),
+    spatstat.model (>= 2.1),
     spatstat.geom (>= 2.1),
     stats (>= 3.3),
     tibble (>= 3.0.0),
