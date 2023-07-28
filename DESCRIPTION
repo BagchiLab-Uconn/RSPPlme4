@@ -21,6 +21,8 @@ Imports:
     spatstat (>= 1.50),
     spatstat.model (>= 2.1),
     spatstat.geom (>= 2.1),
+    spatstat.explore,
+    spatstat.random,
     stats (>= 3.3),
     tibble (>= 3.0.0),
     tidyr (>= 1.0.0),

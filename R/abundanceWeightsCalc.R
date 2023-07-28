@@ -7,7 +7,7 @@
 #' @param Acorr Correct for pattern area.
 #' @param r A vector of distances to evaluate K at.
 #' @param correction The edge correction to use. Refer to
-#' \code{\link[spatstat.core]{Kest}} for options.
+#' \code{\link[spatstat.explore]{Kest}} for options.
 #' Only \code{border} is currently implemented, although NULL will also work
 #' when no edge correction is required (e.g. in plus-sampling designs).
 #'

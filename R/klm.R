@@ -9,7 +9,7 @@
 #' @param weights_type The type of weights to be used if weights is not defined above. 
 #' Must be a type listed in \code{\link{kfuncWeightsCalc}}. Ignored if weights is defined.
 #' @param r Distances at which to fit model
-#' @param correction Edge correction. See \code{\link[spatstat.core]{Kest}}.
+#' @param correction Edge correction. See \code{\link[spatstat.explore]{Kest}}.
 #' @param ppx A set of \code{\link[spatstat.geom]{ppp}} objects to use in calculating weights
 #' @param minsamp Minimum number of points to include point pattern in model.
 #' Not currently used.
@@ -63,7 +63,7 @@ klm <- function(formula, hyper, weights = NULL, weights_type = NULL,
       if(!is.null(ppx))
         stop("ppx must be NULL if a ppp object is used as the response")
       else
-        hyper$k <- lapply(hyper[, lhs, drop = TRUE], spatstat.core::Kest, 
+        hyper$k <- lapply(hyper[, lhs, drop = TRUE], spatstat.explore::Kest, 
                           correction = correction, r = r)
     } 
   

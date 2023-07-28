@@ -8,8 +8,8 @@
 #' @return A vector of weights for the K function with length equal to that of
 #' r.
 #' @examples
-#' x <- spatstat.core::rpoint(20)
-#' y <- spatstat.core::rpoint(20)
+#' x <- spatstat.random::rpoint(20)
+#' y <- spatstat.random::rpoint(20)
 #' kfuncWeightsCalc(x, y, r=seq(0, 0.25, 0.05), correction = "border", type="nx_A")
 #' @family RSPP weight calculations
 #' @details Uses the functions abundanceWeightsCalc and ratioWeightsCalc
