@@ -11,19 +11,23 @@ residHomogenise <- function(mods){
     if(is.null(mod))
       return(NULL)
     ## Extract grouping levels for each level
-    grps <-  getME(mod, "flist")
+    grps <-  lme4::getME(mod, "flist")
 
     ## get the weights
     if(!is.null(weights(mod)))
       wts <-   weights(mod)
-    else wts <- rep(1,mod$dims$N) ## if no weights, set them all as equal -
-    # this shouldn't happen!
+    else 
+      {
+        warning("\n no weights provided \n")
+        wts <- rep(1,mod$dims$N) ## if no weights, set them all as equal -
+        # this shouldn't happen!
+      }
 
     ## Pull out the variances and co-variances of blups at all levels
-    vc <- VarCorr(mod)
+    vc <- lme4::VarCorr(mod)
 
     ## Pull out the BLUPs
-    U_raw <- ranef(mod)
+    U_raw <- lme4::ranef(mod)
 
     ## rescale the random effects - there may be warnings here when
     ## a variance compoenent is near 0. The code corrects for that issue,
