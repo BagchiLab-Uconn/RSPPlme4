@@ -21,11 +21,16 @@ generateK <- function(mod, resids){
   ## sum up the random effects and residuals across all levels
   summed_res <- Reduce('+', summed_res)
 
-  omitted_rows  <- attr(mod@frame, "na.action")
-  K_r <- rep(NA, n + length(omitted_rows))
-  
-  ## bootstrap replicate of K function
-  K_r[-omitted_rows] <- fitted(mod) + summed_res
+  if(!is.null(attr(mod@frame, "na.action")))
+  {
+    omitted_rows  <- attr(mod@frame, "na.action")
+    K_r <- rep(NA, n + length(omitted_rows))
+    
+    ## bootstrap replicate of K function
+    K_r[-omitted_rows] <- fitted(mod) + summed_res
+  }
+  else
+    K_r <- fitted(mod) + summed_res
   
   return(K_r)
 }
