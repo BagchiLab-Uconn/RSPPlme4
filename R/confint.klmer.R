@@ -42,8 +42,21 @@ confint.klmer <-
            iseed = NULL,
            ...)
   {
-    ## If bootstraps haven't been run yet, run now.
-    if (is.null(bootobj))
+    
+    # get model matrix from model if no custom matrix supplied
+    
+    if (is.null(lin_comb))
+    {
+      if (is.null(newdata))
+        lin_comb <- lme4::getME(object[[1]], "X")
+      else
+        lin_comb <-
+          model.matrix(update(formula(object[[1]], fixed.only = TRUE),
+                              NULL~.), data = newdata)
+    }
+    
+    if (is.null(bootobj)) 
+      ## If bootstraps haven't been run yet, run now.
     {
       if (is.null(nboot))
         stop(
@@ -65,17 +78,6 @@ confint.klmer <-
             )
           )
         
-        # get model matrix from model if no custom matrix supplied
-        
-        if (is.null(lin_comb))
-          if (is.null(newdata))
-            lin_comb <- lme4::getME(object[[1]], "X")
-        else
-          lin_comb <-
-            model.matrix(update(formula(object[[1]], fixed.only = TRUE), 
-                                NULL ~ .),
-                         data = newdata)
-        
         bootobj <- bootstrap.klmer(
           object,
           lin_comb = lin_comb,
@@ -86,9 +88,24 @@ confint.klmer <-
         )
       }
     }
-    
-    else
-      lin_comb <- attr(bootobj,  "linear.combination")
+    else 
+    {
+      if(class(bootobj) == "klmerci")
+      {
+        ## extract the required parts of the klmerci object
+        bootobj <- lapply(attr(bootobj, "bootobj"), function(sim, lin_comb){
+          mods_r <- attr(sim, "bootmod")
+          pars_r <- sapply(mods_r, getPars, lin_comb =lin_comb,
+                           simplify=FALSE)
+          attr(pars_r, "bootmod") <- mods_r
+          return(pars_r)
+        }, lin_comb = lin_comb)
+      }
+      else
+        stop(paste("Require a klmerci object to calculate confidence
+                   intervals. \n
+                   Estimate confidence intervals using the confint function"))
+    }
     
     alpha <-  1 - level ## simplify calculations by taking 1 - alpha.
     
@@ -109,8 +126,7 @@ confint.klmer <-
               ))
     }, est = mod_pars, simplify = FALSE)
     
-    
-    ## pull ou the cis of the parameter estimates
+    ## pull out the cis of the parameter estimates
     cis_fixed <-
       apply(
         do.call(abind::"abind", args = list(what = t_fixed, along = 3)),
@@ -131,8 +147,6 @@ confint.klmer <-
       "upr" = t(cis_fixed[2 , ,]),
       along = 3
     )
-    
-   
     
     ##construct the 't-distributions' for the predictions
     t_pred <- lapply(bootobj, function(sim, obs)
