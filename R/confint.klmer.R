@@ -11,6 +11,8 @@
 #' @param lin_comb Linear combination of the fixed parameters
 #' @param bootobj Bootstrap object run outside function. Defaults to NULL so
 #' the bootstrap is run internally.
+#' @param zero_truncate set all negative confidence predictions to zero. 
+#' Defaults to TRUE, which may not be reasonable for some lin_comb. 
 #' @param ncore Number of cpus to use.
 #' @param cltype Type of cluster to use.
 #' @param iseed Random number seed.
@@ -37,6 +39,7 @@ confint.klmer <-
            newdata = NULL,
            lin_comb = NULL,
            bootobj = NULL,
+           zero_truncate = TRUE,
            ncore = 1,
            cltype = "PSOCK",
            iseed = NULL,
@@ -185,7 +188,10 @@ confint.klmer <-
       lwr = lcl_pred,
       along = 3
     )
-    preds[preds < 0] <- 0
+    
+    if(zero_truncate)
+      preds[preds < 0] <- 0
+    
     ## organise into return object
     ci_boot <- list(predictions = preds, pars_fixed = pars_fixed)
     attr(ci_boot, "level") <- level

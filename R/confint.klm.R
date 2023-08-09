@@ -9,6 +9,8 @@
 #' fitted values are returned.
 #' @param lin_comb Linear combination of the fixed parameters. Defaults
 #' to NULL to extract it from the fitted model.
+#' @param zero_truncate set all negative confidence predictions to zero. 
+#' Defaults to TRUE, which may not be reasonable for some lin_comb. 
 #' @param iseed Random number seed.
 #' @param ... Additional arguments, currently ignored.
 
@@ -17,7 +19,7 @@
 #' @export
 
 confint.klm <- function(object, parm, level = 0.95, 
-                        newdata = NULL, lin_comb = NULL, 
+                        newdata = NULL, lin_comb = NULL, zero_truncate = TRUE,
                         nboot=1, iseed = NULL, ...){
   
   if(nboot < 1/(1 - level))
@@ -127,8 +129,8 @@ confint.klm <- function(object, parm, level = 0.95,
     est = sapply(exp_pred, function(x) x$pred),
     lwr = lcl_pred,
     upr = ucl_pred, along=3)
-  
-  preds[preds < 0] <- 0
+  if(zero_truncate)
+    preds[preds < 0] <- 0
   
   ci_boot <- list(predictions = preds, pars = est_pars) 
 
