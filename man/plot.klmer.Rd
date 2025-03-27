@@ -21,16 +21,16 @@ estimates distance
 }
 \seealso{
 Other RSPP plot functions: 
-\code{\link{autoplot.klmci}()},
-\code{\link{autoplot.klmerci}()},
-\code{\link{autoplot.klmer}()},
 \code{\link{autoplot.klm}()},
-\code{\link{makePlotData_klmci}()},
-\code{\link{makePlotData_klmerci}()},
-\code{\link{makePlotData_klmer}()},
+\code{\link{autoplot.klmci}()},
+\code{\link{autoplot.klmer}()},
+\code{\link{autoplot.klmerci}()},
 \code{\link{makePlotData_klm}()},
+\code{\link{makePlotData_klmci}()},
+\code{\link{makePlotData_klmer}()},
+\code{\link{makePlotData_klmerci}()},
+\code{\link{plot.klm}()},
 \code{\link{plot.klmci}()},
-\code{\link{plot.klmerci}()},
-\code{\link{plot.klm}()}
+\code{\link{plot.klmerci}()}
 }
 \concept{RSPP plot functions}

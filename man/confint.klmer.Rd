@@ -12,6 +12,7 @@
   newdata = NULL,
   lin_comb = NULL,
   bootobj = NULL,
+  zero_truncate = TRUE,
   ncore = 1,
   cltype = "PSOCK",
   iseed = NULL,
@@ -34,6 +35,9 @@ fitted values are returned.}
 
 \item{bootobj}{Bootstrap object run outside function. Defaults to NULL so
 the bootstrap is run internally.}
+
+\item{zero_truncate}{set all negative confidence predictions to zero. 
+Defaults to TRUE, which may not be reasonable for some lin_comb.}
 
 \item{ncore}{Number of cpus to use.}
 

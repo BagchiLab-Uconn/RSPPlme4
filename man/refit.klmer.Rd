@@ -4,12 +4,14 @@
 \alias{refit.klmer}
 \title{Refits an klmer model to the Bootstrapped K Function Data}
 \usage{
-\method{refit}{klmer}(mods, newK)
+\method{refit}{klmer}(object, newresp, ...)
 }
 \arguments{
-\item{mods}{Original \code{\link{klmer}} model fitted to observed data.}
+\item{object}{Original \code{\link{klmer}} model fitted to observed data.}
 
-\item{newK}{Simulated K functions.}
+\item{newresp}{Simulated K functions.}
+
+\item{...}{Other arguments passed to methods. Currently ignored.}
 }
 \value{
 A klmer model fitted to the randomised data.

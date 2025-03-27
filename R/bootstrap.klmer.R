@@ -46,7 +46,7 @@ bootstrap.klmer <- function(mods, lin_comb, nboot, maxit =10,
       ## Simulate new K function.
       K_r <- simulate(mods, resids=resids)
       ## refit the models
-      mods_r <- refit.klmer(mods=mods, newK=K_r)
+      mods_r <- refit.klmer(mods, newresp=K_r)
       
       ## If any errors repeat iteration, until maxit iterations (then give up)
       

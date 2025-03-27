@@ -6,11 +6,7 @@
 \alias{RSPPlme4-package}
 \title{RSPPlme4: Analysis of Replicated Point Patterns with 'lme4'}
 \description{
-Many analyses that use spatial point patterns seek answers 
-    to questions about what factors generate variation among cases. 
-    This package implements the method used by Bagchi and Illian (2014) 
-    <doi:10.1111/2041-210x.12335> for replicated point pattern analysis, 
-    using algorithms for mixed effects models from the 'lme4' package.
+Many analyses that use spatial point patterns seek answers to questions about what factors generate variation among cases. This package implements the method used by Bagchi and Illian (2014) \doi{10.1111/2041-210x.12335} for replicated point pattern analysis, using algorithms for mixed effects models from the 'lme4' package.
 }
 \author{
 \strong{Maintainer}: Robert Bagchi \email{robert.bagchi@uconn.edu}

@@ -10,6 +10,7 @@
   level = 0.95,
   newdata = NULL,
   lin_comb = NULL,
+  zero_truncate = TRUE,
   nboot = 1,
   iseed = NULL,
   ...
@@ -27,6 +28,9 @@ fitted values are returned.}
 
 \item{lin_comb}{Linear combination of the fixed parameters. Defaults
 to NULL to extract it from the fitted model.}
+
+\item{zero_truncate}{set all negative confidence predictions to zero. 
+Defaults to TRUE, which may not be reasonable for some lin_comb.}
 
 \item{nboot}{Number of bootstrap simulations.}
 

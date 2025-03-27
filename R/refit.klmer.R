@@ -1,13 +1,13 @@
 #' Refits an klmer model to the Bootstrapped K Function Data
 #'
-#' @param mods Original \code{\link{klmer}} model fitted to observed data.
-#' @param newK Simulated K functions.
-#'
+#' @param object Original \code{\link{klmer}} model fitted to observed data.
+#' @param newresp Simulated K functions.
+#' @param ... Other arguments passed to methods. Currently ignored.
 #' @return A klmer model fitted to the randomised data.
 #'
 #' @export
 #'
-refit.klmer <- function(mods, newK){
+refit.klmer <- function(object, newresp, ...){
   mods <- mapply(function(mod, K_r)
   {
     if(!is.null(mod))
@@ -22,7 +22,7 @@ refit.klmer <- function(mods, newK){
     }
     else
       return(NULL)
-  }, mod=mods, K_r = newK, SIMPLIFY=FALSE)
+  }, mod=object, K_r = newresp, SIMPLIFY=FALSE)
   class(mods) <- "klmer"
   return(mods)
 }

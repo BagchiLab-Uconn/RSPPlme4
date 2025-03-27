@@ -17,8 +17,8 @@ modCompareBoot <- function(modsH1, modsH0, resids, maxit)
     ## Simulate new K function from the H0 (null) model.
     K_r <- simulate(modsH0, resids=resids)
     ## refit the models
-    modsH0_r <- refit.klmer(modsH0, newK=K_r)
-    modsH1_r <- refit.klmer(modsH1, newK=K_r)
+    modsH0_r <- refit.klmer(modsH0, newresp=K_r)
+    modsH1_r <- refit.klmer(modsH1, newresp=K_r)
 
 
     (bootstrap_stat <- modCompare(modsH1=modsH1_r, modsH0=modsH0_r))
