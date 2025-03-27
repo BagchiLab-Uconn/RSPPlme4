@@ -25,10 +25,10 @@ anova.klmer <- function (object, term = NULL, dists, nboot,  maxit=50,
 
   ## manage distances if several ranges are to be tested
   testdists <-  dists
-  if(class(testdists) !='list')
+  if(!inherits(testdists, "list"))
     testdists <- list(testdists)
 
-  if(class(dists) == 'list'){
+  if(inherits(dists, "list")){
     dists <- unique(do.call('c', dists))
     dists <- dists[order(dists)]
   }

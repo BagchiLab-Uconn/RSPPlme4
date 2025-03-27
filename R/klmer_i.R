@@ -35,7 +35,7 @@ klmer_i <- function(formula, k, data, weights, na.action="na.omit")
   lmer_ki <- try(lmer(formula, k_dataframe, weights=weights,
          na.action=na.action), silent=TRUE)
 
-  if(class(lmer_ki) =='try-error')
+  if(inherits(lmer_ki, "try-error"))
     lmer_ki <- NULL
   return(lmer_ki)
 }

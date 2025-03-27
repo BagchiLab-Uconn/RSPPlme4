@@ -93,7 +93,7 @@ confint.klmer <-
     }
     else 
     {
-      if(class(bootobj) == "klmerci")
+      if(inherits(bootobj, "klmerci"))
       {
         ## extract the required parts of the klmerci object
         bootobj <- lapply(attr(bootobj, "bootobj"), function(sim, lin_comb){

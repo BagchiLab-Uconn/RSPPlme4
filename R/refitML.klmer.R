@@ -15,7 +15,7 @@ refitMLklmer <- function(mods)
     if (!is.null(mod)) {
       mod <- try(refitML(mod),
                  silent = TRUE)
-      if (class(mod) == "try-error") {
+      if (inherits(mod, "try-error")) {
         warning("ML full models  did not converge at some distances")
         mod <- NULL
       }
