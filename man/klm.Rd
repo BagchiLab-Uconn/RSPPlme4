@@ -32,7 +32,7 @@ Must be a type listed in \code{\link{kfuncWeightsCalc}}. Ignored if weights is d
 
 \item{r}{Distances at which to fit model}
 
-\item{correction}{Edge correction. See \code{\link[spatstat.core]{Kest}}.}
+\item{correction}{Edge correction. See \code{\link[spatstat.explore]{Kest}}.}
 
 \item{ppx}{A set of \code{\link[spatstat.geom]{ppp}} objects to use in calculating weights}
 

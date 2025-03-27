@@ -20,7 +20,7 @@ klmer(
 }
 \arguments{
 \item{formula}{Model formula following \code{\link[lme4]{lmer}} syntax, with
-left hand side a K function object from \code{\link[spatstat.core]{Kest}} or 
+left hand side a K function object from \code{\link[spatstat.explore]{Kest}} or 
 a \code{link[spatstat.geom]{ppp}}}
 
 \item{hyper}{\code{\link[spatstat.geom]{hyperframe}} with  k functions, weights,
@@ -33,7 +33,7 @@ Must be a type listed in \code{\link[RSPPlme4]{kfuncWeightsCalc}}. Ignored if we
 
 \item{r}{Distances at which to fit model}
 
-\item{correction}{Edge correction. See \code{\link[spatstat.core]{Kest}}.}
+\item{correction}{Edge correction. See \code{\link[spatstat.explore]{Kest}}.}
 
 \item{ppx}{A set of \code{\link[spatstat.geom]{ppp}} objects to use in calculating weights}
 
