@@ -33,7 +33,7 @@ anova.klmer <- function (object, term = NULL, dists, nboot,  maxit=50,
     dists <- dists[order(dists)]
   }
 
-  if(!all(as.character(dists) %in% names(object)))
+  if(!all(as.character(dists) %in% c(0, names(object))))
     stop("Some test distances have not been modelled")
 
   atts <- attributes(object)
