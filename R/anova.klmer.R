@@ -38,7 +38,8 @@ anova.klmer <- function (object, term = NULL, dists, nboot,  maxit=50,
 
   atts <- attributes(object)
   object <- object[as.character(dists)]
-  attributes(object) <- atts
+  attr(object, "class") <- atts$class
+  attr(object, "call") <- atts$class
 
   modsH1 <- refitMLklmer(object)
   modsH0 <- update(modsH1, term=term)
