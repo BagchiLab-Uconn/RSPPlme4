@@ -1,7 +1,7 @@
 Package: RSPPlme4
 Type: Package
 Title: Analysis of Replicated Point Patterns with 'lme4'
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: person("Robert", "Bagchi", email = "robert.bagchi@uconn.edu",
   role = c("aut", "cre"))
 Description: Many analyses that use spatial point patterns seek answers 
