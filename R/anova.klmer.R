@@ -3,7 +3,7 @@
 #' @param object An object of class \code{\link{klmer}}
 #' @param term The parameter of interest.
 #' @param dists Distances at which to test the effect of term. Can be a list with
-#' several distance ranges specified.
+#' several distance ranges specified.Checking this.
 #' @param nboot Number of bootstrap interations to compute the null distribution.
 #' @param ncore Number of cpus to use.
 #' @param maxit Maximum number of samples to try before giving up on refitting
@@ -38,8 +38,10 @@ anova.klmer <- function (object, term = NULL, dists, nboot,  maxit=50,
 
   atts <- attributes(object)
   object <- object[as.character(dists)]
-  attributes(object) <- atts
-
+  attr(object, "call") <- atts$call
+  attr(object, "class") <- atts$class
+  
+  
   modsH1 <- refitMLklmer(object)
   modsH0 <- update(modsH1, term=term)
 

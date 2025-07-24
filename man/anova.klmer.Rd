@@ -22,7 +22,7 @@
 \item{term}{The parameter of interest.}
 
 \item{dists}{Distances at which to test the effect of term. Can be a list with
-several distance ranges specified.}
+several distance ranges specified.Checking this.}
 
 \item{nboot}{Number of bootstrap interations to compute the null distribution.}
 
