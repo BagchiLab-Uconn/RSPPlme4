@@ -3,7 +3,7 @@
 #' @param object An object of class \code{\link{klmer}}
 #' @param term The parameter of interest.
 #' @param dists Distances at which to test the effect of term. Can be a list with
-#' several distance ranges specified.
+#' several distance ranges specified. Trying to fix
 #' @param nboot Number of bootstrap interations to compute the null distribution.
 #' @param ncore Number of cpus to use.
 #' @param maxit Maximum number of samples to try before giving up on refitting
