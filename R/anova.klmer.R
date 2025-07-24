@@ -36,12 +36,7 @@ anova.klmer <- function (object, term = NULL, dists, nboot,  maxit=50,
   if(!all(as.character(dists) %in% c(0, names(object))))
     stop("Some test distances have not been modelled")
 
-  if(any(dists == 0)){
-    dists <- dists[dists != 0]
-    testdists <- lapply(testdists, function(d) d[d!=0])
-    warning("Distance = 0 removed prior to analysis")
-  }
-  
+
   atts <- attributes(object)
   object <- object[as.character(dists)]
   attr(object, "call") <- atts$call
