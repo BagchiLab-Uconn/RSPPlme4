@@ -33,16 +33,33 @@ anova.klmer <- function (object, term = NULL, dists, nboot,  maxit=50,
     dists <- dists[order(dists)]
   }
 
+<<<<<<< HEAD
   if(!all(as.character(dists) %in% c(0, names(object))))
+=======
+  
+  if(any(dists == 0)){
+    dists <- dists[dists != 0]
+    testdists <- lapply(testdists, function(d) d[d!=0])
+    warning("Distance = 0 removed prior to analysis")
+  }
+  
+  if(!all(as.character(dists) %in% names(object)))
+>>>>>>> fix_anova
     stop("Some test distances have not been modelled")
 
 
   atts <- attributes(object)
   object <- object[as.character(dists)]
+<<<<<<< HEAD
   attr(object, "call") <- atts$call
   attr(object, "class") <- atts$class
   
   
+=======
+  attr(object, "class") <- atts$class
+  attr(object, "call") <- atts$class
+
+>>>>>>> fix_anova
   modsH1 <- refitMLklmer(object)
   modsH0 <- update(modsH1, term=term)
 
