@@ -4,11 +4,12 @@ author: Robert Bagchi
 bibliography: "`r rbbt::bbt_write_bib('RSPPlme4.json', overwrite = TRUE)`"
 output: md_document
 ---
-#Description
+# Description
+
 Many analyses that use spatial point patterns seek answers to questions
 about what factors generate variation among cases. 
 
-#Bibliography
+# Bibliography
 
 This package implements the method described by 
 @Bagchi.Illian_2015_MethodsinEcologyandEvolution for 

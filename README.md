@@ -1,7 +1,9 @@
-\#Description Many analyses that use spatial point patterns seek answers
-to questions about what factors generate variation among cases.
+# Description
 
-\#Bibliography
+Many analyses that use spatial point patterns seek answers to questions
+about what factors generate variation among cases.
+
+# Bibliography
 
 This package implements the method described by Bagchi and Illian (2015)
 for replicated point pattern analysis, using algorithms for mixed
