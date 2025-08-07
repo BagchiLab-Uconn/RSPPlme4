@@ -2,6 +2,7 @@
 title: Replicated Spatial Point Pattern Analysis using the lme4 library
 author: Robert Bagchi
 bibliography: "`r rbbt::bbt_write_bib('RSPPlme4.json', overwrite = TRUE)`"
+csl: ecologydoi.csl
 output: md_document
 ---
 # Description
