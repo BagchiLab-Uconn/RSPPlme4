@@ -8,6 +8,8 @@ output: md_document
 Many analyses that use spatial point patterns seek answers to questions
 about what factors generate variation among cases. 
 
+# Bibliography
+
 This package implements the method described by 
 @Bagchi.Illian_2015_MethodsinEcologyandEvolution for 
 replicated point pattern analysis, 
