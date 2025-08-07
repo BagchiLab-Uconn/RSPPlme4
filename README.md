@@ -5,10 +5,10 @@ about what factors generate variation among cases.
 
 This package implements the method described by Bagchi and Illian (2015)
 for replicated point pattern analysis, using algorithms for mixed
-effects models from the `lme4` package Bates et al. (2015).
+effects models from the `lme4` package (Bates et al. (2015).)
 
-To get an idea for how to use the package for basic analyses, refer to
-the tutorial we wrote Bagchi et al. (2022).
+For a tutorial on how to use the package for basic analyses, refer to
+the tutorial (Bagchi et al. (2022)).
 
 # Bibliography
 

@@ -16,7 +16,7 @@ replicated point pattern analysis,
 using algorithms for mixed effects models from the `lme4` package 
 @Bates.etal_2015_JournalofStatisticalSoftware.
 
-To get an idea for how to use the package for basic analyses, refer to the tutorial we wrote @Bagchi.etal_2022_Front.For.Glob.Change.
+For a tutorial on how to use the package for basic analyses, refer to the tutorial (@Bagchi.etal_2022_Front.For.Glob.Change).
 
 # Bibliography
 
