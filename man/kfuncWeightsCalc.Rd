@@ -20,7 +20,7 @@ kfuncWeightsCalc(
 \item{r}{A vector of distances to evaluate K at.}
 
 \item{correction}{The edge correction to use - refer to
-\code{\link{Kest}} for options.}
+\code{\link[spatstat.explore]{Kest}} for options.}
 
 \item{type}{A string designating the types of weights to be calculated.}
 }
